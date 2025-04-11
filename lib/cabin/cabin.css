@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Cabin';
+    src: url('cabin-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('cabin-bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('cabin-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}

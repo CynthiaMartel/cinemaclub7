@@ -1,0 +1,67 @@
+body::after {
+  background-color: #F2E9DD !important;
+  background-image: url('../img/principalFeed/indexBackground.png') !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-position: center;
+  opacity: 0.9;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.popover {
+  z-index: 99999  !important;
+}
+
+.modal-content {
+  overflow: visible !important;
+}
+.form-floating {
+  position: relative;
+}
+.popover-small {
+  max-width: 100px; 
+  font-size: 0.85rem; 
+}
+
+body {
+  font-family: 'Cabin', sans-serif;
+}
+
+h1 {
+  font-family: 'Cabin', sans-serif;
+  font-weight: bold;
+}
+
+p {
+  font-family: 'Cabin', sans-serif;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Cabin';
+  src: url('../lib/cabin/Cabin-Regular.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --bs-body-font-family: 'Cabin', sans-serif;
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+}

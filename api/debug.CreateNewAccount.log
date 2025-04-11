@@ -1,0 +1,25 @@
+
+Array
+(
+    [name] => Lola
+    [email] => Lola@gmail.com
+    [password] => Probando.1
+)
+Array
+(
+    [name] => Lola
+    [email] => lola@gmail.com
+    [password] => Probando.1
+)
+Array
+(
+    [name] => Aruma
+    [email] => aruma_rs@gmail.com
+    [password] => 
+)
+Array
+(
+    [name] => Aruma
+    [email] => aruma_rs@gmail.com
+    [password] => 
+)

@@ -1,0 +1,40 @@
+
+2025-04-08 13:44:46: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 14:23:41: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 14:25:10: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 16:46:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 16:46:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 16:46:33: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 16:46:34: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 19:36:29: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 19:36:29: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 19:47:57: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-08 19:47:57: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
+INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+
+2025-04-09 18:03:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`post`, CONSTRAINT `fk_user_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`))
+INSERT INTO post (idUser,title,content,visible,editorName) VALUES (:idUser,:title,:content,:visible,:editorName)
+
+2025-04-09 18:03:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`post`, CONSTRAINT `fk_user_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`))
+INSERT INTO post (idUser,title,content,visible,editorName) VALUES (:idUser,:title,:content,:visible,:editorName)
+
