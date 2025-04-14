@@ -1,4 +1,4 @@
-/* Tamaño fijo del editor enriquecido */
+<!-- Modal para crear y editar Post de noticias, con editor de texto enrrquecido (CKEditor) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <!-- Tamaño fijo del editor de texto enrriquecido -->
     <style>
-        /* Tamaño fijo del editor enriquecido */
         .ck-editor__editable_inline {
             min-height: 300px;
         }

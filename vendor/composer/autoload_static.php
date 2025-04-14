@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690
+class ComposerStaticInit162bf260f38c44ee9bfde7666c51be3c
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -27,10 +27,15 @@ class ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690
             'Psr\\Http\\Client\\' => 16,
             'Psr\\Cache\\' => 10,
             'ParagonIE\\ConstantTime\\' => 23,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
             'Monolog\\' => 8,
+        ),
+        'L' => 
+        array (
+            'League\\OAuth2\\Client\\' => 21,
         ),
         'G' => 
         array (
@@ -73,9 +78,18 @@ class ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690
         array (
             0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'League\\OAuth2\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth2-google/src',
+            1 => __DIR__ . '/..' . '/league/oauth2-client/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -112,6 +126,7 @@ class ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690
         'Google_AccessToken_Revoke' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_AccessToken_Verify' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_AuthHandler_AuthHandlerFactory' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
+        'Google_AuthHandler_Guzzle5AuthHandler' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_AuthHandler_Guzzle6AuthHandler' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_AuthHandler_Guzzle7AuthHandler' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_Client' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
@@ -134,9 +149,9 @@ class ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3e6e79e410cd98a8d86f36f772fe3690::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit162bf260f38c44ee9bfde7666c51be3c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit162bf260f38c44ee9bfde7666c51be3c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit162bf260f38c44ee9bfde7666c51be3c::$classMap;
 
         }, null, ClassLoader::class);
     }

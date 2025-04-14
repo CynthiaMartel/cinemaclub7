@@ -1,9 +1,15 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 require_once __DIR__ . '/../config/config.globales.php';
 require_once __DIR__ . '/../db/class.HandlerDB.php';
 require_once __DIR__ . '/../class/function.globales.php';
 require_once __DIR__ . '/../class/class.User.php';
+require_once __DIR__ . '/../welcome.mail/sendWelcomeEmail.php';
+
 
 /* @var Usuario $actualUser */
 global $actualUser;
@@ -49,7 +55,7 @@ switch($tarea) {
         }
         
         $newUser->setEmail($email);
-        //PONER AQUÍ VALIDACIÓN DE EMAIL CON MÉTODOS YA CREADOS!!!!!!!!!    
+    
     
         if (strlen($password1) == 0) {
             $respuesta['exito'] = 0;
@@ -76,6 +82,12 @@ switch($tarea) {
             $newUser -> setIdRol(3); //  3 = 'User' como usuario distinto de Editor o Admin para que los nuevos usuarios queden registrados como usuarios regulares
             
             $newUser -> save();
+        
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
+
+            sendWelcomeEmail($email, $name);
 
             // Crear la sesión
             require_once __DIR__ . '/../class/class.SecureSessionHandler.php'; 

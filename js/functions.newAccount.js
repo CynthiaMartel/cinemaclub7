@@ -13,7 +13,7 @@ function openModalNewAccount() {
 
 $(document).ready(function () {
     $('#modal-newAccount').on('shown.bs.modal', function () {
-        let input = $("#button-createAccount"); // Asegúrate que este es el correcto
+        let input = $("#button-createAccount"); 
 
         // Eliminar cualquier popover previo
         input.popover("dispose");

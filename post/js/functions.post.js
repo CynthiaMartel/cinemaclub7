@@ -1,10 +1,52 @@
 function openModalPost() {
-    $(".form-control").removeClass("is-invalid");
-    $("#form-create-editate-post-feedback").removeClass("text-bg-danger text-bg-success").html('');
+    // Eliminar clases de validación de todos los campos del formulario
+    $(".form-control").removeClass("is-invalid is-valid");
 
-    $(".form-control").val('');
+    // Limpiar el feedback completamente
+    $("#form-create-editate-post-feedback")
+        .removeClass("text-bg-danger text-bg-success valid-feedback invalid-feedback")
+        .html('');
+
+    // Limpiar campos del formulario
+    $("#form-create-editate-post-id").val('0');
+    $("#form-create-editate-post-title").val('');
+    $("#form-create-editate-post-editor").val('');
+
+    // Limpiar el contenido del CKEditor
+    if (editorInstance) {
+        editorInstance.setData('');
+    }
+
+    // Resetear el switch de visibilidad
+    $("#form-create-editate-post-visible").prop('checked', false);
+
+    // Mostrar el modal
     $("#modal-create-editate-post").modal("show");
 }
+
+$(document).ready(function () {
+    $('#modal-create-editate-post').on('shown.bs.modal', function () {
+        let input = $("#form-create-editate-post-visible"); 
+
+        // Eliminar cualquier popover previo
+        input.popover("dispose");
+
+        // Crear popover
+        input.popover({
+            title: "¿Deseas guardar como visibile?",
+            content: "Primero marca esta casilla y después pulsa el botón 'Guardar Post' para que esta noticia sea publicada y otros usuarios puedan leerla. Si por el contrario, solo quieres guardarla como borrador, pulsa al botón 'Guardar Post' y deja el botón 'Visible' desmarcado.",
+            placement: "bottom",
+            trigger: "manual",
+            html: true,
+            container: 'body',
+            customClass: "popover-small"
+        });
+
+        // Mostrar popover
+        input.popover("show");
+    });
+});
+
 
 function savePost(event) {
     console.log("Entra a savePost");
@@ -40,9 +82,15 @@ function savePost(event) {
                     // Si el switch estaba activado, hacer visible el post directamente
                     VisiblePost(idPost);
                 } else {
-                    // Si no, mostrar un mensaje opcional o dejarlo como borrador
-                    $("#spinner").hide(); // ocultamos spinner si no redirige
-                    alert("Post guardado como borrador.");
+                    // Si no, mostrar un alert de guardado como borrador
+    
+                    // Espera 2 segundos antes de redirigir
+                    setTimeout(() => {
+                        alert("Post guardado como borrador.");
+                        $("#spinner").show();
+                        window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php';
+                    }, 2000);
+                    
                 }
             }
             
@@ -74,7 +122,12 @@ function savePost(event) {
         processData: false,
         success: function (respuesta) {
             if (respuesta.exito === 1) {
-                window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php';
+                $("#spinner").show();
+                // Espera 2 segundos antes de redirigir
+                setTimeout(() => {
+                    window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php';
+                }, 2000);
+
             } else {
                 alert("No se pudo hacer visible el post: " + respuesta.mensaje);
             }
