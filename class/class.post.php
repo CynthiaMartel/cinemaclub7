@@ -20,16 +20,16 @@ class Post extends ObjetoDB {
         return $this->id;
     }
 
-    public function setIdPost(int $id): void { //
-        $this->id = ($id);
+    public function setIdPost(int $id): void {
+        $this->id = $id;
     }
 
     public function getIdUser(): int {
         return $this->idUser;
     }
 
-    public function setIdUser(int $idUser): void { //
-        $this->idUser = ($idUser);
+    public function setIdUser(int $idUser): void {
+        $this->idUser = $idUser;
     }
 
     public function getTitle(): string {
@@ -67,22 +67,22 @@ class Post extends ObjetoDB {
     public function save(): bool {
         return parent::save();
     }
-    
-}
-function postList(array $data): array {
-    $gestorDB = new HandlerDB();
-    $records = $gestorDB->getRecords(
-        TABLE_POST,
-        $data,
-        null,
-        'FETCH_ASSOC'
-    );
 
-    if (isset($records[0]['id']) && $records[0]['id'] > 0) {
-        return $records;
+    public static function postList(array $data = ['id', 'title', 'content']): array {
+        $gestorDB = new HandlerDB();
+        $records = $gestorDB->getRecords(
+            TABLE_POST,
+            $data,
+            '',      // <= cláusula WHERE vacía
+            [],      // <= parámetros WHERE vacíos
+            null, 
+            'FETCH_ASSOC'
+        );
+
+        return ($records !== false) ? $records : [];
     }
-
-    return [];
 }
-
 ?>
+
+
+

@@ -7,29 +7,42 @@ class SecureSessionHandler implements SessionHandlerInterface {
     public function __construct() {
     }
     
-    public function start($name = CONFIG_SESIONES['NOMBRE_SESION_LOGIN'] , $lifetime = 0, $path = '/', $domain = CONFIG_SESIONES['DOMINIO_SESION_LOGIN'], $secure = true, $httponly = true, $samesite = 'Strict'): void {
+    public function start(
+        $name = CONFIG_SESIONES['NOMBRE_SESION_LOGIN'],
+        $lifetime = 0,
+        $path = '/',
+        $domain = CONFIG_SESIONES['DOMINIO_SESION_LOGIN'],
+        $secure = true,
+        $httponly = true,
+        $samesite = 'Strict'
+    ): void {
         global $_SESSION;
+    
         if (!self::$active) {
-            // Establecer el nombre de la sesión
-            session_name($name);
-
-            // Establecer la configuración de la cookie de sesión
-            session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
-            ini_set('session.cookie_samesite', $samesite);
-
-
-            // Iniciar la sesión
-            session_start();
-
-            if (!(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')) {
-                session_regenerate_id(true);
+            // Evitar reiniciar sesión si ya está activa
+            if (session_status() !== PHP_SESSION_ACTIVE) {
+    
+                // Establecer el nombre de la sesión
+                session_name($name);
+    
+                // Establecer la configuración de la cookie de sesión
+                session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);
+                ini_set('session.cookie_samesite', $samesite);
+    
+                // Iniciar la sesión
+                session_start();
+    
+                // Regenerar el ID de sesión si NO es una llamada AJAX
+                if (!(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')) {
+                    session_regenerate_id(true);
+                }
             }
-
+    
             // Establecer la sesión como activa
             self::$active = true;
-       
         }
     }
+    
     
     public function open($path, $name): bool {
         return true;
@@ -59,16 +72,19 @@ class SecureSessionHandler implements SessionHandlerInterface {
     }
 
     public function destroySession(): void {
-        session_unset();
-        session_destroy();
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_unset();
+            session_destroy();
+            if (ini_get("session.use_cookies")) {
+                $params = session_get_cookie_params();
+                setcookie(session_name(), '', time() - 42000,
+                    $params["path"], $params["domain"],
+                    $params["secure"], $params["httponly"]
+                );
+            }
         }
     }
+    
 
     public function gc($max_lifetime): false | int {
         return true;
