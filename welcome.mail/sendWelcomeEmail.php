@@ -57,7 +57,7 @@ function sendWelcomeEmail($toEmail, $toName) {
         $mail->addAddress($toEmail, $toName);
 
         $mail->Subject = 'Te damos la beinvenida a CinemaClub7!';
-        $mail->Body = "Hola $toName,\n\nGracias por registrarte en CinemaClub. ¡Nos alegra mucho de que formes parte de nuestra comunidad cinéfila!\n\nEsperamos que disfrutes de tu experiencia y puedas generar redes con otros amantes del cine\n\n🎬 Recuerda: Watch, Rate, Debate.\n\nExplora películas, puntúa, y únete a los debates del CineClub7, en donde tu participación será clave para hacernos crecer.\n\n🎥 ¡Nos vemos en las pantallas! \n\n— El equipo de CinemaClub7";
+        $mail->Body = "Hola $toName,\n\nGracias por registrarte en CinemaClub. ¡Nos alegra mucho de que formes parte de nuestra comunidad cinéfila!🎬🍿\n\nEsperamos que disfrutes de tu experiencia y puedas generar redes con otros amantes del cine\n\n🎬 Recuerda: Watch, Rate, Debate.\n\nExplora películas, puntúa, y únete a los debates del CineClub7, en donde tu participación será clave para hacernos crecer.\n\n🎥 ¡Nos vemos en las pantallas! \n\n— El equipo de CinemaClub7";
 
         // Enviar el correo de bienvenida
         $mail->send();
