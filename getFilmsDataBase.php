@@ -6,9 +6,32 @@ $pass = "";
 $apiKey = "acab06919125f555727dedf0d5342357";
 $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
 
+function curlRequest($url) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, "CynthiaMovieBot/1.0 (https://cinemaclub7.local)");
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_FAILONERROR, true);
+    $response = curl_exec($ch);
+    if (curl_errno($ch)) {
+        echo "cURL error: " . curl_error($ch) . "<br>";
+        curl_close($ch);
+        return false;
+    }
+    curl_close($ch);
+    return $response;
+}
+
+function log_wikidata_request($title, $property) {
+    $logFile = __DIR__ . '/wikidata_requests.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $entry = "$timestamp | Title: $title | Property: $property" . PHP_EOL;
+    file_put_contents($logFile, $entry, FILE_APPEND);
+}
+
 function fetchMovieDetails($movieId, $apiKey) {
     $url = "https://api.themoviedb.org/3/movie/$movieId?api_key=$apiKey&append_to_response=credits";
-    $json = file_get_contents($url);
+    $json = curlRequest($url);
     return $json ? json_decode($json, true) : null;
 }
 
@@ -21,51 +44,34 @@ function getDirector($credits) {
     return 'Desconocido';
 }
 
-function getAwardsFromWikidata($title) {
+function getFromWikidata($title, $property, $label) {
+    log_wikidata_request($title, $property);
+
     $query = <<<SPARQL
-SELECT ?awardLabel WHERE {
+SELECT ?${label}Label WHERE {
   ?film rdfs:label "$title"@en.
-  ?film p:P166 ?awardStatement.
-  ?awardStatement ps:P166 ?award.
+  ?film p:$property ?statement.
+  ?statement ps:$property ?$label.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 SPARQL;
 
     $url = 'https://query.wikidata.org/sparql?format=json&query=' . urlencode($query);
-    $response = file_get_contents($url);
+    $response = curlRequest($url);
     if (!$response) return [];
 
+    sleep(1);
     $data = json_decode($response, true);
-    $awards = [];
+    $results = [];
     foreach ($data['results']['bindings'] as $binding) {
-        $awards[] = $binding['awardLabel']['value'];
+        $results[] = $binding["{$label}Label"]['value'];
     }
-    return $awards;
-}
-
-function getNominationsFromWikidata($title) {
-    $query = <<<SPARQL
-SELECT ?nominationLabel WHERE {
-  ?film rdfs:label "$title"@en.
-  ?film p:P1411 ?statement.
-  ?statement ps:P1411 ?nomination.
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-}
-SPARQL;
-
-    $url = 'https://query.wikidata.org/sparql?format=json&query=' . urlencode($query);
-    $response = file_get_contents($url);
-    if (!$response) return [];
-
-    $data = json_decode($response, true);
-    $nominations = [];
-    foreach ($data['results']['bindings'] as $binding) {
-        $nominations[] = $binding['nominationLabel']['value'];
-    }
-    return $nominations;
+    return $results;
 }
 
 function getFestivalsFromWikidata($title) {
+    log_wikidata_request($title, 'P4634/P1344');
+
     $query = <<<SPARQL
 SELECT ?festivalLabel WHERE {
   ?film rdfs:label "$title"@en.
@@ -81,9 +87,10 @@ SELECT ?festivalLabel WHERE {
 SPARQL;
 
     $url = 'https://query.wikidata.org/sparql?format=json&query=' . urlencode($query);
-    $response = file_get_contents($url);
+    $response = curlRequest($url);
     if (!$response) return [];
 
+    sleep(1);
     $data = json_decode($response, true);
     $festivals = [];
     foreach ($data['results']['bindings'] as $binding) {
@@ -102,9 +109,10 @@ function saveFilm($pdo, $film) {
 
     $insert = $pdo->prepare("
         INSERT INTO films (
-            title, directedBy, genre, origin_country, duration,
-            castCrew, release_date, frame, individualRate, globalRate,
-            awards, overview, nominations, festivals, vote_average, original_language
+            title, directedBy, genre, origin_country, original_language,
+            overview, duration, castCrew, release_date, frame,
+            awards, nominations, festivals, vote_average,
+            individualRate, globalRate
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
@@ -113,18 +121,18 @@ function saveFilm($pdo, $film) {
         $film['directedBy'],
         $film['genre'],
         $film['country'],
+        $film['original_language'],
+        $film['overview'],
         $film['duration'],
         $film['castCrew'],
         $film['release_date'],
         $film['frame'],
-        0,
-        0,
         implode(', ', $film['awards']),
-        $film['overview'],
         implode(', ', $film['nominations']),
         implode(', ', $film['festivals']),
         $film['vote_average'],
-        $film['original_language']
+        0, // individualRate
+        0  // globalRate
     ]);
 
     echo "Película '{$film['title']}' insertada.<br>";
@@ -132,7 +140,7 @@ function saveFilm($pdo, $film) {
 
 function fetchMoviesFromPage($page, $apiKey, $yearStart, $yearEnd) {
     $url = "https://api.themoviedb.org/3/discover/movie?api_key=$apiKey&primary_release_date.gte=$yearStart-01-01&primary_release_date.lte=$yearEnd-12-31&page=$page&sort_by=popularity.desc";
-    $json = file_get_contents($url);
+    $json = curlRequest($url);
     return $json ? json_decode($json, true)['results'] : [];
 }
 
@@ -157,36 +165,44 @@ for ($page = 1; $page <= $pages; $page++) {
         $genres = array_column($details['genres'], 'name');
         $countries = array_column($details['production_countries'], 'name');
 
-        // Obtener premios, nominaciones y festivales
-        $awards = getAwardsFromWikidata($details['title']);
-        $nominations = getNominationsFromWikidata($details['title']);
-        $festivals = getFestivalsFromWikidata($details['title']);
+        $title = $details['title'];
+        $awards = getFromWikidata($title, 'P166', 'award');
+        $nominations = getFromWikidata($title, 'P1411', 'nomination');
+        $festivals = getFestivalsFromWikidata($title);
 
-        // Prepara los datos para insertar
         $filmData = [
-            'title' => $details['title'],
+            'title' => $title,
             'directedBy' => $director,
             'genre' => implode(', ', $genres),
             'country' => implode(', ', $countries),
+            'original_language' => $details['original_language'],
+            'overview' => $details['overview'],
             'duration' => $details['runtime'],
             'castCrew' => implode(', ', $cast),
             'release_date' => $details['release_date'],
-            'frame' => $details['poster_path'] ? 1 : 0,
+            'frame' => $details['poster_path'] 
+                ? "https://image.tmdb.org/t/p/w500" . $details['poster_path'] 
+                : '', // si no hay poster
             'awards' => $awards,
             'nominations' => $nominations,
             'festivals' => $festivals,
-            'overview' => $details['overview'],
-            'vote_average' => $details['vote_average'],
-            'original_language' => $details['original_language']
+            'vote_average' => $details['vote_average']
         ];
 
-        // Guardar la película
         saveFilm($pdo, $filmData);
     }
+
+    sleep(5);
 }
 
 echo "Proceso finalizado.<br>";
 ?>
+
+
+
+
+
+
 
 
 
