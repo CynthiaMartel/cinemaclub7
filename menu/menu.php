@@ -16,8 +16,10 @@
                     <a class="nav-link active fw-bold text-white" aria-current="page" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/index.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold text-white" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/post/index.php"
-                    >Noticias</a> <!--onclick="ContentEditorAccess();--->
+                    <a class="nav-link fw-bold text-white" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/post/index.php">Noticias</a> <!--onclick="ContentEditorAccess();--->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-white" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/film/index.php?film_id=69">Peliculas</a> <!--onclick="ContentEditorAccess();--->
                 </li>
             </ul>
 

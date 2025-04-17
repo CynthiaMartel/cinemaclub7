@@ -65,3 +65,6 @@ p {
 body {
   font-family: var(--bs-body-font-family);
 }
+.modal {
+  z-index : 9999 !important;
+}

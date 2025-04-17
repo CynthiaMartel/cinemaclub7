@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="form-create-editate-post">
-                        <input type="hidden" id="form-create-editate-post-id" name="id" value="0">
+                        <input type="hidden" id="form-create-editate-post-id" name="id" value="">
 
                         <!-- Campos de entrada -->
                         <div class="row mb-3">
@@ -65,8 +65,9 @@
                             <div class="spinner-border text-success" id="spinner" role="status" style="display: none; width: 1.5rem; height: 1.5rem;">
                                 <span class="visually-hidden">Cargando...</span>
                             </div>
-                            <button type="submit" class="btn btn-success text-lg fw-bold">Guardar Post</button>
+                            <button type="submit" class="btn btn-success text-lg fw-bold" id="modal-btn-savePost">Guardar Post</button>
                         </div>
+                        
                     </form>
                 </div>
             </div>

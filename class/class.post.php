@@ -68,19 +68,39 @@ class Post extends ObjetoDB {
         return parent::save();
     }
 
-    public static function postList(array $data = ['id', 'title', 'content']): array {
+    public function delete(): bool {
         $gestorDB = new HandlerDB();
+        $where = "id = :id";
+        $params = [':id' => $this->id];
+        return $gestorDB->deleteRecord(TABLE_POST, $where, $params);
+    }
+    
+    
+
+    public static function postList(array $data = ['id', 'title', 'content', 'visible']): array {
+        global $actualUser; // Asegurarse de que se tiene acceso al usuario actual
+    
+        $gestorDB = new HandlerDB();
+    
+        $where = "";
+        $params = [];
+    
+        if (!$actualUser->isAdminOrEditor()) {
+            $where = "visible = 1";
+        }
+    
         $records = $gestorDB->getRecords(
             TABLE_POST,
             $data,
-            '',      // <= cláusula WHERE vacía
-            [],      // <= parámetros WHERE vacíos
-            null, 
+            $where,
+            $params,
+            null,
             'FETCH_ASSOC'
         );
-
+    
         return ($records !== false) ? $records : [];
     }
+    
 }
 ?>
 

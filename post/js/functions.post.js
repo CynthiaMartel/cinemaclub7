@@ -1,26 +1,39 @@
-function openModalPost() {
-    // Eliminar clases de validación de todos los campos del formulario
+function openModalPost(post_id = null) {
     $(".form-control").removeClass("is-invalid is-valid");
 
-    // Limpiar el feedback completamente
     $("#form-create-editate-post-feedback")
         .removeClass("text-bg-danger text-bg-success valid-feedback invalid-feedback")
         .html('');
 
-    // Limpiar campos del formulario
-    $("#form-create-editate-post-id").val('0');
-    $("#form-create-editate-post-title").val('');
-    $("#form-create-editate-post-editor").val('');
+    let title = ''
+    let editor = ''
+    let visible = false
+    let content = ''
 
-    // Limpiar el contenido del CKEditor
-    if (editorInstance) {
-        editorInstance.setData('');
+    if(post_id != null){
+        //FUNCION PARA TRAER LOS DATOS DEL POST INDIVIDUAL
+        title = 'Queso se meó'
+        editor = 'Sin'
+        visible = false
+        content = 'jdfghdfghdlfgdfklgjlsiyeifjeilfhefuegfukhfukgeug'
+
+        $("#form-create-editate-post-id").val(post_id);
+
+        $("#modal-btn-savePost").text('Actualizar Post');
+        $("#modal-btn-savePost").addClass('btn-warning');
+    }else{
+        $("#modal-btn-savePost").text('Guardar Post');
+        $("#modal-btn-savePost").removeClass('btn-warning');
     }
 
-    // Resetear el switch de visibilidad
-    $("#form-create-editate-post-visible").prop('checked', false);
+    $("#form-create-editate-post-id").val(post_id);
+    $("#form-create-editate-post-title").val(title);
+    $("#form-create-editate-post-editor").val(editor);
+    $("#form-create-editate-post-visible").prop('checked', visible);
+    if (editorInstance) {
+        editorInstance.setData(content);
+    }
 
-    // Mostrar el modal
     $("#modal-create-editate-post").modal("show");
 }
 
@@ -28,13 +41,11 @@ $(document).ready(function () {
     $('#modal-create-editate-post').on('shown.bs.modal', function () {
         let input = $("#form-create-editate-post-visible"); 
 
-        // Eliminar cualquier popover previo
         input.popover("dispose");
 
-        // Crear popover
         input.popover({
             title: "¿Deseas guardar como visibile?",
-            content: "Primero marca esta casilla y después pulsa el botón 'Guardar Post' para que esta noticia sea publicada y otros usuarios puedan leerla. Si por el contrario, solo quieres guardarla como borrador, pulsa al botón 'Guardar Post' y deja el botón 'Visible' desmarcado.",
+            content: "Primero marca esta casilla y después pulsa el botón 'Guardar Post' para que esta noticia sea publicada y otros usuarios puedan leerla. Si por el contrario, solo quieres guardarla como borrador, pulsa el botón 'Guardar Post' y deja el botón 'Visible' desmarcado.",
             placement: "bottom",
             trigger: "manual",
             html: true,
@@ -42,11 +53,9 @@ $(document).ready(function () {
             customClass: "popover-small"
         });
 
-        // Mostrar popover
         input.popover("show");
     });
 });
-
 
 function savePost(event) {
     console.log("Entra a savePost");
@@ -70,30 +79,23 @@ function savePost(event) {
 
         success: function (respuesta) {
             if (respuesta.exito === 1) {
-                $("#form-create-editate-post-title, #form-create-editate-post-editor, #form-create-editate-post-content").removeClass("is-invalid") .addClass("is-valid");
+                $("#form-create-editate-post-title, #form-create-editate-post-editor, #form-create-editate-post-content").removeClass("is-invalid").addClass("is-valid");
             
                 $("#form-create-editate-post-feedback").addClass("valid-feedback text-success").text(respuesta.mensaje);
             
                 const idPost = respuesta.id;
-            
                 const isVisible = $("#form-create-editate-post-visible").prop("checked");
             
                 if (isVisible) {
-                    // Si el switch estaba activado, hacer visible el post directamente
                     VisiblePost(idPost);
                 } else {
-                    // Si no, mostrar un alert de guardado como borrador
-    
-                    // Espera 2 segundos antes de redirigir
                     setTimeout(() => {
                         alert("Post guardado como borrador.");
                         $("#spinner").show();
                         window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php';
                     }, 2000);
-                    
                 }
             }
-            
         },
 
         error: function (xhr, status, error) {
@@ -104,9 +106,7 @@ function savePost(event) {
     });
 }
 
-
-
- function VisiblePost(idPost) {
+function VisiblePost(idPost) {
     const formData = new FormData();
     formData.append('tarea', 'MAKE_VISIBLE');
     formData.append('id', idPost);
@@ -123,11 +123,9 @@ function savePost(event) {
         success: function (respuesta) {
             if (respuesta.exito === 1) {
                 $("#spinner").show();
-                // Espera 2 segundos antes de redirigir
                 setTimeout(() => {
                     window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php';
                 }, 2000);
-
             } else {
                 alert("No se pudo hacer visible el post: " + respuesta.mensaje);
             }
@@ -136,40 +134,58 @@ function savePost(event) {
             alert('Error al intentar hacer visible el post');
         }
     });
-} 
+}
 
+function confirmDeletePost(id) {
+    if (!confirm("¿quieres borrar este post? Esta acción no se puede deshacer.")) {
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('tarea', 'DELETE_POST');
+    formData.append('id', id);
+
+    $("#spinner").show();
+
+    $.ajax({
+        url: RUTA_URL_API + '/api.post.php',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            $("#spinner").hide();
+            if (respuesta.exito === 1) {
+                alert(respuesta.mensaje);
+                window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php'; // o recargar página
+            } else {
+                alert("Error al borrar el post: " + respuesta.mensaje);
+            }
+        },
+        error: function () {
+            $("#spinner").hide();
+            alert("Hubo un error al intentar borrar el post.");
+        }
+    });
+}
 
 function uploadPost(boton) {  
     const form = $("#form-create-editate-post").get(0);
-
-    // Eliminar clases de error previas
     $(".form-control").removeClass("is-invalid");
-    $("#form-create-editate-post-feedback").removeClass("text-bg-danger text-bg-success");
-    $("form-create-editate-post").html('');
+    $("#form-create-editate-post-feedback").removeClass("text-bg-danger text-bg-success").html('');
 
-    // Asignar manualmente el contenido del editor al campo content
     if (window.editor) {
         $("#form-create-editate-post-content").val(window.editor.getData());
     }
-    
-    // Verificar si el contenido es válido antes de enviar
+
     if ($("#form-create-editate-post-content").val().trim() === "") {
         $("#form-create-editate-post-feedback").addClass('text-bg-danger').html("Debe rellenar el campo de contenido del Post");
         $("#form-create-editate-post-content").addClass('is-invalid');
         return;
     }
-    
-    // Crear objeto FormData con el formulario actualizado
+
     let formData = new FormData(form);
-
-    // Recoger el estado del checkbox de borrador
-    /* const visible = $("#form-create-editate-post-visible").prop("checked") ? 1 : 0;
-    formData.append('visible', visible); */
-
-    // Asegurar que el contenido del editor se envíe correctamente
     formData.set('content', $("#form-create-editate-post-content").val());
-
-    // Agregar la tarea
     formData.append('tarea', 'SAVE_POST');
     formData.append('id', $("#form-create-editate-post-id").val());
 
@@ -184,8 +200,7 @@ function uploadPost(boton) {
             console.log("Respuesta del servidor (SAVE_POST):", respuesta);
 
             if (respuesta.exito === 0) {
-                $("#form-create-editate-post-feedback").addClass('text-bg-danger');
-                $("#form-create-editate-post-feedback").html(respuesta.mensaje);
+                $("#form-create-editate-post-feedback").addClass('text-bg-danger').html(respuesta.mensaje);
 
                 if (respuesta.errorTitleEditor === 1) {
                     $("#form-create-editate-post-title").addClass('is-invalid');
@@ -198,19 +213,20 @@ function uploadPost(boton) {
             }
 
             if (respuesta.exito === 1) {
-                $("#form-create-editate-post-title").removeClass("is-invalid").addClass("is-valid");
-                $("#form-create-editate-post-editor").removeClass("is-invalid").addClass("is-valid");
-                $("#form-create-editate-post-content").removeClass("is-invalid").addClass("is-valid");
+                $("#form-create-editate-post-title, #form-create-editate-post-editor, #form-create-editate-post-content")
+                    .removeClass("is-invalid").addClass("is-valid");
 
-                $("#form-create-editate-post-feedback").removeClass("is-invalid text-danger").addClass("valid-feedback text-success").text(respuesta.mensaje);
-                
-                // Espera 3 segundos antes de redirigir
+                $("#form-create-editate-post-feedback")
+                    .removeClass("is-invalid text-danger")
+                    .addClass("valid-feedback text-success")
+                    .text(respuesta.mensaje);
+
                 setTimeout(() => {
                     window.location.href = RUTA_URL_PRINCIPAL + '/index.php';
                 }, 2000);
             }
         },
-        
+
         error: function (xhr, status, error) {
             console.error('Error en la solicitud:', error);
             alert('Ocurrió un error al enviar el formulario');

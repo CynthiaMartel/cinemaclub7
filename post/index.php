@@ -18,11 +18,7 @@ global $actualUser;
 
     <body>
     <?php require_once dirname(__DIR__) . '/menu/menu.php'; ?> 
-    
-
-    <!-- Post funciones JS -->
-    <script src='../post/js/functions.post.js'></script>
-
+  
     <!-- // Si el usuario está logueado se leerá actualUser, y se ejecuatará isAdminOrEditor. Sino está logueado, no se ejecutará esta función pero se mostrará el contenido de la página igualmente-->
     <!-- // El usuario puede abrir el modal de crear Post si tiene id rol 1 (Admin) o id rol 2 (Editor). Si es usuario regular (id rol = 3, no se mostrará)-->
     <?php if (isset($actualUser) && $actualUser->isAdminOrEditor()) { ?>
@@ -77,6 +73,18 @@ global $actualUser;
                   <div class="card-body">
                     <p class="card-text"><?php echo sanitizarString($post['content']); ?></p>
                   </div>
+                  
+                     <!-- Switch guardar como borrador que se mostrará si es Admin o Editor -->
+                     <?php if (isset($actualUser) && $actualUser->isAdminOrEditor()) { ?>
+                      <div class="form-check form-switch mb-3">
+                        
+                      <input class="form-check-input post-visible-switch" onchange="" type="checkbox" role="switch" id="post-visible-<?php echo $post['id']; ?>" data-id="<?php echo $post['id']; ?>" <?php echo $post['visible'] ? 'checked' : ''; ?>>
+                        <label class="form-check-label" for="post-visible-<?php echo $post['id']; ?>">Visible</label>
+                      </div>
+                      <button type="button" class="btn btn-warning" onclick="openModalPost(<?php echo $post['id']; ?>)">Editar Post</button>
+                      <button type="button" class="btn btn-danger delete-post-btn" onclick="confirmDeletePost(<?php echo $post['id']; ?>)">Borrar Post</button>
+
+                      <?php } ?>
                 </article>
           <?php
               } // Fin del inner loop
@@ -89,14 +97,12 @@ global $actualUser;
         </div>
       </div>
 
-      <!-- Aquí no se incluye la columna lateral derecha (col-md-3) -->
-      
     </div>
   </div>
 </main>
 
-
-
+  <!-- Post funciones JS -->
+  <script src='../post/js/functions.post.js'></script>
 
 </body>
 </html>

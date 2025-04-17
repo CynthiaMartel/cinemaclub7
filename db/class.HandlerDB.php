@@ -22,6 +22,7 @@ const FICHERO_LOG_DB = CONFIG_DB['DB_LOG_FILE'];
 const TABLE_USERS = 'users';
 const TABLE_ROL = 'rol';
 const TABLE_POST = 'post';
+const TABLE_FILM = 'films';
 
 const TABLAS_OBJETO_DB = [
     'User' => TABLE_USERS,
@@ -137,6 +138,33 @@ class HandlerDB {
         }
     }
 
+/***********************************************************************************************
+     * Borrar registros
+     * 
+     ***********************************************************************************************/
+    public function deleteRecord(string $tabla, string $clausulaWhere, array $parametrosWhere): bool {
+        $sql = "DELETE FROM {$tabla}";
+    
+        if (!empty($clausulaWhere)) {
+            $sql .= " WHERE {$clausulaWhere}";
+        }
+    
+        $this->lastQuery = $sql;
+    
+        try {
+            $stmt = $this->dbh->prepare($sql);
+            foreach ($parametrosWhere as $param => $value) {
+                $stmt->bindValue($param, $value);
+            }
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            $mensajeLog = date('Y-m-d H:i:s') . ": " . $e->getMessage();
+            file_put_contents(FICHERO_LOG_DB, $mensajeLog . PHP_EOL . $this->lastQuery . PHP_EOL . PHP_EOL, FILE_APPEND);
+            $this->error = $e->getMessage();
+            return false;
+        }
+    }
+    
 
     /***********************************************************************************************
      * insertarRegistro
