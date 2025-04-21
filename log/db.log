@@ -38,3 +38,63 @@ INSERT INTO post (idUser,title,content,visible,editorName) VALUES (:idUser,:titl
 2025-04-09 18:03:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`post`, CONSTRAINT `fk_user_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`))
 INSERT INTO post (idUser,title,content,visible,editorName) VALUES (:idUser,:title,:content,:visible,:editorName)
 
+2025-04-21 15:50:19: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 15:50:40: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 15:51:47: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:04:07: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:04:20: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:17:12: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:17:21: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:17:33: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:18:32: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:47:10: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 16:47:36: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
+SELECT title,editor,visible,content FROM post WHERE id = :id 
+
+2025-04-21 18:55:18: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 18:57:50: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 18:57:52: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 18:57:52: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 18:58:16: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 18:58:48: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 18:58:50: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 19:03:33: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+
+2025-04-21 19:04:23: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
+SELECT idUser FROM users WHERE email = :email  LIMIT 1 
+

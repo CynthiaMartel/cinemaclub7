@@ -47,65 +47,83 @@ switch($tarea) {
         $respuesta['datos'] = $data;
         break;
  */
-    case 'SAVE_POST': // Guardar el Post
-        $post = new Post(); // Se crea el post nuevo
 
-        $title = sanitizarString(trim($_POST["title"]));
+    
+    case 'SAVE_POST': // Guardar o actualizar Post
+        //Recogida de datos
+        // Recogemos y saneamos el posible ID (0 → nuevo; >0 → edición)
+        $id = isset($_POST['id']) && is_numeric($_POST['id']) 
+              ? intval($_POST['id']) 
+              : 0;
+    
+        $title      = sanitizarString(trim($_POST["title"]));
         $editorName = sanitizarString(trim($_POST["editorName"]));
-        $content = sanitizarString(trim($_POST["content"]));
+        // NO sanitizar el HTML de content con htmlspecialchars aquí (ya lo hace CKE editor)
+        $content    = trim($_POST["content"]);
+        $visible    = isset($_POST["visible"]) && $_POST["visible"] !== 'false' 
+                      ? 1 
+                      : 0;
+        
+        // URL de la imagen (puede venir vacía)
+        $img = isset($_POST['img']) 
+        ? trim($_POST['img']) 
+        : '';
 
-        if (strlen($title) == 0 || strlen($editorName) == 0) {
-            $respuesta['exito'] = 0;
-            $respuesta['errorTitleEditor'] = 1;
-            $respuesta['mensaje'] = 'Debe rellenar los campos Título y Editor/Editora';
+        // Validaciones
+        if (strlen($title) === 0 || strlen($editorName) === 0) {
+            $respuesta = [
+                'exito'            => 0,
+                'errorTitleEditor' => 1,
+                'mensaje'          => 'Debe rellenar los campos Título y Editor/Editora'
+            ];
             break;
         }
-
-        if (strlen($content) == 0) {
-            $respuesta['exito'] = 0;
-            $respuesta['errorContent'] = 1;
-            $respuesta['mensaje'] = 'Debe rellenar el campo de contenido del Post';
+    
+        if (strlen($content) === 0) {
+            $respuesta = [
+                'exito'         => 0,
+                'errorContent'  => 1,
+                'mensaje'       => 'Debe rellenar el campo de contenido del Post'
+            ];
             break;
         }
-
-        //if (!validarFecha($_POST['fechaHora'])) {
-            // $respuesta['exito'] = 0;
-                //$respuesta['errorFecha'] = 1;
-                //$respuesta['mensaje'] = 'La fecha no es válida';
-                //break;
-            //}
-
-            //$post->setFechaHora($_POST['fechaHora']);
-
-        if (isset($_POST["id"])) $post->setIdPost($_POST["id"]);
-
+    
+        // Crea el objeto Post y, si es edición, le asigna el ID
+        $post = new Post();
+        if ($id > 0) {
+            $post->setIdPost($id);
+        }
+    
+        // Asignar resto de campos
         $post->setTitle($title);
         $post->setEditorName($editorName);
         $post->setContent($content);
-
+        $post->setVisible($visible);
+        $post->setImg($img);
+    
+        // Usuario
         $userId = $actualSession->read('id');
         $post->setIdUser($userId);
-
-        // Siempre guardar como visible = 0 por defecto
-        //$post->setVisible(0);
-        $post->setVisible(isset($_POST['visible']) && $_POST['visible'] === 'true' ? 1 : 0);
-
-        //
+    
+        // Guardar (INSERT o UPDATE según tenga ID o no)
         if ($post->save()) {
-            $respuesta['exito'] = 1;
-            $respuesta['id'] = $post->getIdPost();
-            $mensaje = 'Contenido del Post guardado con éxito. Post guardado';
-
-            if (isset($_POST["id"])){
-                $mensaje = 'Post actualizado';
-            }
-
-            $respuesta['mensaje'] = $mensaje;
+            $respuesta = [
+                'exito'   => 1,
+                'id'      => $post->getIdPost(),
+                'mensaje' => $id > 0
+                    ? 'Post actualizado con éxito.'
+                    : 'Post creado con éxito.'
+            ];
         } else {
-            $respuesta['exito'] = 0;
-            $respuesta['mensaje'] = 'Ha ocurrido un error al intentar guardar el post';
+            $respuesta = [
+                'exito'   => 0,
+                'mensaje'=> 'Ha ocurrido un error al intentar guardar el post'
+            ];
         }
-    break;
+        break;
+    
+
+
 
     case 'MAKE_VISIBLE':
         $idPost = intval($_POST['id']);
@@ -121,51 +139,32 @@ switch($tarea) {
         
         $post->setVisible($visible);
 
-        if ($post->save()) {
+        if ($post-> save()) {
             $respuesta['exito'] = 1;
             $respuesta['mensaje'] = 'Post actualizado como visible. Cargando...';
         } else {
             $respuesta['exito'] = 0;
             $respuesta['mensaje'] = 'Error al actualizar la visibilidad del post';
         }
-
         break;
         
-        case 'DELETE_POST':
-            $id = intval($_POST['id'] ?? 0);
-            
-            if ($id <= 0) {
-                $respuesta['exito'] = 0;
-                $respuesta['mensaje'] = 'ID de post no válido';
-                break;
-            }
-        
-            $post = new Post($id);
-        
-            if ($post->getIdPost() === 0) {
-                $respuesta['exito'] = 0;
-                $respuesta['mensaje'] = 'No se encontró el post';
-                break;
-            }
-        
-            $resultado = $post->delete();
-        
-            if ($resultado) {
-                $respuesta['exito'] = 1;
-                $respuesta['mensaje'] = 'Post borrado correctamente';
-            } else {
-                $respuesta['exito'] = 0;
-                $respuesta['mensaje'] = 'No se pudo borrar el post';
-            }
-        
-            break;
-        
-        
+    case 'DELETE_POST': //Borrar post
+        $id = intval($_POST['id']);
+        $post = new Post($id);
+        if ($post->delete()) {
+            $respuesta['exito'] = 1;
+             $respuesta['mensaje'] = 'Post borrado con éxito';
+        } else {
+            $respuesta['exito'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido eliminar el post';
+        }
+        break;
+
+    
     default:
     $respuesta['exito'] = 0;
     $respuesta['mensaje'] = 'Error en la petición de gestión de Post';
     break;
-
 }
 
 ob_clean();

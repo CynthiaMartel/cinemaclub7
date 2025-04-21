@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="form-create-editate-post">
-                        <input type="hidden" id="form-create-editate-post-id" name="id" value="">
+                        <input type="hidden" name="id" id="form-create-editate-post-id" value="">
 
                         <!-- Campos de entrada -->
                         <div class="row mb-3">
@@ -48,6 +48,17 @@
                             <label for="form-create-editate-post-content">Contenido de noticia</label>
                             <textarea class="form-control" id="form-create-editate-post-content" name="content" placeholder="¡Empieza a escribir aquí!"></textarea>
                         </div>
+
+                        <!-- Campo de URL de imagen -->
+                        <div class="mb-3">
+                        <label for="form-create-editate-post-img" class="form-label">URL de la imagen</label>
+                        <input type="url"
+                                class="form-control"
+                                id="form-create-editate-post-img"
+                                name="img"
+                                placeholder="https://mi-servidor.com/imagen.jpg">
+                        </div>
+
 
                         <!-- Switch guardar como borrador -->
                         <div class="form-check form-switch mb-3">

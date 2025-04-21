@@ -32,74 +32,84 @@ global $actualUser;
   
 
 <?php require_once dirname(__DIR__) . '/post/modal/create.editate.post.php'; ?>
+<?php require_once dirname(__DIR__) . '/post/modal/create.editate.post.php'; ?>
+
 <main class="main pt-4">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-9">
+
+      <!-- Contenedor de ancho completo -->
+      <div class="col-12">
         <div class="row">
           <?php
-          // Llamada a la función para obtener los datos de los posts
-          $posts = Post::postList();
+          // Recuperamos posts
+          $posts = Post::postList() ?: [];
 
-          if ($posts !== false) {
-            $totalPosts = count($posts);
-            $postsPerColumn = ceil($totalPosts / 3);
+          // Preparamos cuatro columnas vacías
+          $columns = [[], [], [], []];
+          // Repartimos los posts en las cuatro columnas de forma intercalada
+          foreach ($posts as $i => $post) {
+            $columns[$i % 4][] = $post;
+          }
 
-            // Dividir los posts en columnas de 2 en 2
-            for ($i = 0; $i < 3; $i++) {
-              echo '<div class="col-md-4">';
-              for ($j = 0; $j < $postsPerColumn; $j++) {
-                $index = $i * $postsPerColumn + $j;
-                if ($index >= $totalPosts) break;
-                $post = $posts[$index];
-          ?>
+          // Renderizamos cada columna
+          for ($col = 0; $col < 4; $col++): ?>
+            <div class="col-md-3">
+              <?php foreach ($columns[$col] as $post):
+                // URL de la imagen (fallback si no hay)
+                $urlImg = !empty($post['img'])
+                  ? $post['img']
+                  : '../img/default_img_post.jpg';
+              ?>
                 <article class="card mb-4">
                   <header class="card-header">
-                    <!-- 
-                    <div class="card-meta">
-                      <a href="#"><time class="timeago" datetime="2021-09-26 20:00" timeago-id="<?php echo $index; ?>"></time></a> en 
-                      <a href="page-category.html"><?php // echo sanitizarString($post['category']); ?></a> 
-                    </div> 
-                    -->
-                    <a href="post-image.html">
-                      <h4 class="card-title"><?php echo sanitizarString($post['title']); ?></h4>
-                    </a>
+                    <h4 class="card-title mb-0">
+                      <?php echo sanitizarString($post['title']); ?>
+                    </h4>
                   </header>
-                  <!-- 
-                  <a href="post-image.html">
-                    <img class="card-img" src="<?php // echo sanitizarString($post['imagePost']); ?>" alt="">
-                  </a> 
-                  -->
+                  <a href="post.php?id=<?php echo $post['id']; ?>">
+                    <img
+                      class="card-img"
+                      src="<?php echo htmlspecialchars($urlImg); ?>"
+                      alt="Imagen del post">
+                  </a>
                   <div class="card-body">
-                    <p class="card-text"><?php echo sanitizarString($post['content']); ?></p>
-                  </div>
-                  
-                     <!-- Switch guardar como borrador que se mostrará si es Admin o Editor -->
-                     <?php if (isset($actualUser) && $actualUser->isAdminOrEditor()) { ?>
-                      <div class="form-check form-switch mb-3">
-                        
-                      <input class="form-check-input post-visible-switch" onchange="" type="checkbox" role="switch" id="post-visible-<?php echo $post['id']; ?>" data-id="<?php echo $post['id']; ?>" <?php echo $post['visible'] ? 'checked' : ''; ?>>
-                        <label class="form-check-label" for="post-visible-<?php echo $post['id']; ?>">Visible</label>
-                      </div>
-                      <button type="button" class="btn btn-warning" onclick="openModalPost(<?php echo $post['id']; ?>)">Editar Post</button>
-                      <button type="button" class="btn btn-danger delete-post-btn" onclick="confirmDeletePost(<?php echo $post['id']; ?>)">Borrar Post</button>
+                    <p class="card-text">
+                      <?php echo html_entity_decode(
+                        $post['content'],
+                        ENT_QUOTES|ENT_HTML5,
+                        'UTF-8'
+                      ); ?>
+                    </p>
 
-                      <?php } ?>
+                    <?php if (isset($actualUser) && $actualUser->isAdminOrEditor()): ?>
+                      <div class="d-flex justify-content-between gap-2 mt-3">
+                        <button
+                          class="btn btn-sm btn-warning w-50"
+                          onclick="openModalPost(<?php echo $post['id']; ?>)">
+                          <i class="bi bi-pencil-square"></i> Editar
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger w-50"
+                          onclick="confirmDeletePost(<?php echo $post['id']; ?>)">
+                          <i class="bi bi-trash3"></i> Eliminar
+                        </button>
+                      </div>
+                    <?php endif; ?>
+                  </div>
                 </article>
-          <?php
-              } // Fin del inner loop
-              echo '</div>'; // Fin de col-md-4
-            } // Fin del outer loop
-          } else {
-            echo '<p>No hay posts disponibles.</p>';
-          }
-          ?>
+              <?php endforeach; ?>
+            </div>
+          <?php endfor; ?>
         </div>
       </div>
 
     </div>
   </div>
 </main>
+
+
+
 
   <!-- Post funciones JS -->
   <script src='../post/js/functions.post.js'></script>

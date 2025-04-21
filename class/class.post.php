@@ -11,6 +11,8 @@ class Post extends ObjetoDB {
     protected string $content = "";
     protected int $visible = 0;
     protected string $editorName = "";
+    protected string $img = '';
+
 
     public function __construct(int $id = 0, string $anotherKey = "", $anotherKeyValue = "") {
         parent::__construct($id, $anotherKey, $anotherKeyValue);
@@ -45,8 +47,9 @@ class Post extends ObjetoDB {
     }
 
     public function setContent(string $content): void {
-        $this->content = sanitizarString($content);
+        $this->content = $content; // CKEditor ya da contenido "limpio", por lo que no hace falta que lo saniticemos
     }
+    
 
     public function getVisible(): int {
         return $this->visible;
@@ -75,6 +78,14 @@ class Post extends ObjetoDB {
         return $gestorDB->deleteRecord(TABLE_POST, $where, $params);
     }
     
+
+    public function getImg(): string {
+        return $this->img;
+    }
+    public function setImg(string $url): void {
+        
+        $this->img = trim($url);
+    }
     
 
     public static function postList(array $data = ['id', 'title', 'content', 'visible']): array {

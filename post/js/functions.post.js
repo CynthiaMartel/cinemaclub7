@@ -1,42 +1,71 @@
-function openModalPost(post_id = null) {
+function openModalPost(idPost = null) {
+    // Reset de clases de validación
     $(".form-control").removeClass("is-invalid is-valid");
 
+    // Limpiar feedback
     $("#form-create-editate-post-feedback")
         .removeClass("text-bg-danger text-bg-success valid-feedback invalid-feedback")
         .html('');
 
-    let title = ''
-    let editor = ''
-    let visible = false
-    let content = ''
+    // Limpiar campos por defecto
+    $("#form-create-editate-post-id").val('');
+    $("#form-create-editate-post-title").val('');
+    $("#form-create-editate-post-editor").val('');
+    $("#form-create-editate-post-visible").prop('checked', false);
+    $("#form-create-editate-post-img").val('');
 
-    if(post_id != null){
-        //FUNCION PARA TRAER LOS DATOS DEL POST INDIVIDUAL
-        title = 'Queso se meó'
-        editor = 'Sin'
-        visible = false
-        content = 'jdfghdfghdlfgdfklgjlsiyeifjeilfhefuegfukhfukgeug'
-
-        $("#form-create-editate-post-id").val(post_id);
-
-        $("#modal-btn-savePost").text('Actualizar Post');
-        $("#modal-btn-savePost").addClass('btn-warning');
-    }else{
-        $("#modal-btn-savePost").text('Guardar Post');
-        $("#modal-btn-savePost").removeClass('btn-warning');
-    }
-
-    $("#form-create-editate-post-id").val(post_id);
-    $("#form-create-editate-post-title").val(title);
-    $("#form-create-editate-post-editor").val(editor);
-    $("#form-create-editate-post-visible").prop('checked', visible);
     if (editorInstance) {
-        editorInstance.setData(content);
+        editorInstance.setData('');
     }
 
+    // Si hay idPost => estamos editando
+    if (idPost && idPost > 0) {
+        $.ajax({
+            url: '/cinemaclub7/post/getInfoIndividualPost.php',
+            method: 'POST',
+            data: { id: idPost },
+            dataType: 'json',
+            success: function (response) {
+                if (response.error) {
+                    $("#form-create-editate-post-feedback")
+                        .addClass("text-bg-danger invalid-feedback")
+                        .text(response.error);
+                    return;
+                }
+
+                // Asignar los datos al formulario
+                $("#form-create-editate-post-id").val(idPost);
+                $("#form-create-editate-post-title").val(response.title);
+                $("#form-create-editate-post-editor").val(response.editor);
+                $("#form-create-editate-post-visible").prop("checked", response.visible);
+                $("#form-create-editate-post-img").val(response.img || '');
+                if (editorInstance) {
+                    editorInstance.setData(response.content || '');
+                }
+
+                // Cambiar botón a modo "Actualizar"
+                $("#modal-btn-savePost").text('Actualizar Post').addClass('btn-warning');
+            },
+            error: function (xhr, status, err) {
+                console.error('AJAX Error:', status, err, '\nResponse text:', xhr.responseText);
+                $("#form-create-editate-post-feedback")
+                    .addClass("text-bg-danger invalid-feedback")
+                    .text('Error al cargar los datos del post. Revisa la consola.');
+            }
+            
+
+        });
+    } else {
+        // Modo "Crear nuevo"
+        $("#modal-btn-savePost").text('Guardar Post').removeClass('btn-warning');
+    }
+
+    // Mostrar el modal
     $("#modal-create-editate-post").modal("show");
 }
 
+
+// Función para asegurarnos de avisar al editor o admin si realmente deasea borrar el post, y si es así, borrarlo de la base de datos
 $(document).ready(function () {
     $('#modal-create-editate-post').on('shown.bs.modal', function () {
         let input = $("#form-create-editate-post-visible"); 
@@ -79,23 +108,30 @@ function savePost(event) {
 
         success: function (respuesta) {
             if (respuesta.exito === 1) {
-                $("#form-create-editate-post-title, #form-create-editate-post-editor, #form-create-editate-post-content").removeClass("is-invalid").addClass("is-valid");
+                $("#form-create-editate-post-title, #form-create-editate-post-editor, #form-create-editate-post-content").removeClass("is-invalid") .addClass("is-valid");
             
                 $("#form-create-editate-post-feedback").addClass("valid-feedback text-success").text(respuesta.mensaje);
             
                 const idPost = respuesta.id;
+            
                 const isVisible = $("#form-create-editate-post-visible").prop("checked");
             
                 if (isVisible) {
+                    // Si el switch estaba activado, hacer visible el post directamente
                     VisiblePost(idPost);
                 } else {
+                    // Si no, mostrar un alert de guardado como borrador
+    
+                    // Espera 2 segundos antes de redirigir
                     setTimeout(() => {
                         alert("Post guardado como borrador.");
                         $("#spinner").show();
                         window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php';
                     }, 2000);
+                    
                 }
             }
+            
         },
 
         error: function (xhr, status, error) {
@@ -106,7 +142,9 @@ function savePost(event) {
     });
 }
 
-function VisiblePost(idPost) {
+
+
+ function VisiblePost(idPost) {
     const formData = new FormData();
     formData.append('tarea', 'MAKE_VISIBLE');
     formData.append('id', idPost);
@@ -123,9 +161,11 @@ function VisiblePost(idPost) {
         success: function (respuesta) {
             if (respuesta.exito === 1) {
                 $("#spinner").show();
+                // Espera 2 segundos antes de redirigir
                 setTimeout(() => {
                     window.location.href = RUTA_URL_PRINCIPAL + '/post/index.php';
                 }, 2000);
+
             } else {
                 alert("No se pudo hacer visible el post: " + respuesta.mensaje);
             }
@@ -134,7 +174,8 @@ function VisiblePost(idPost) {
             alert('Error al intentar hacer visible el post');
         }
     });
-}
+} 
+
 
 function confirmDeletePost(id) {
     if (!confirm("¿quieres borrar este post? Esta acción no se puede deshacer.")) {
