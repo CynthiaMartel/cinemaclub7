@@ -33,7 +33,7 @@ if (count($post) === 0) {
 
 echo json_encode([
     'title'   => $post[0]['title'],
-    'editor'  => $post[0]['editorName'],  // ojo, alias que espera tu JS
+    'editor'  => $post[0]['editorName'], 
     'visible' => (bool)$post[0]['visible'],
     'content' => $post[0]['content'],
     'img'     => $post[0]['img']

@@ -48,23 +48,31 @@ switch ($tarea) {
 
         // Comprobación de duplicados por email
         $handler = new HandlerDB();
-        $exists = $handler->getRecords(
-            TABLE_USERS,
-            ['idUser'],
-            'email = :email',
-            [':email' => $email],
-            null,
-            'FETCH_ASSOC',
-            1
+        $stmt = $handler->dbh->prepare(
+            "SELECT COUNT(*) AS total 
+             FROM " . TABLE_USERS . " 
+             WHERE email = :email"
         );
-        
-        if (!empty($exists)) {
-            // Ya existe una cuenta con este email
+        if (!$stmt) {
+            // fallo en prepare
+            error_log("Error en prepare: " . implode(' | ', $handler->getPdo()->errorInfo()));
             header('Content-Type: application/json');
-            echo json_encode(['exito' => 0, 'errorMail' => 1, 'mensaje' => 'Ya existe esta cuenta registrada']);
+            echo json_encode(['exito'=>0,'mensaje'=>'Error interno al comprobar email']);
             exit;
         }
+        $stmt->execute([':email' => $email]);
+        $count = (int)$stmt->fetchColumn();
 
+        if ($count > 0) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'exito'     => 0,
+                'errorMail' => 1,
+                'mensaje'   => 'Ya existe esta cuenta registrada'
+            ]);
+            exit;
+        }
+        
         // Validación de contraseñas
         if ($pass1 === '') {
             $respuesta = ['exito' => 0, 'mensaje' => 'Debes rellenar el campo contraseña'];

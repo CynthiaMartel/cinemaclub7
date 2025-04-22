@@ -1,6 +1,6 @@
 body::after {
   background-color: #F2E9DD !important;
-  background-image: url('../img/principalFeed/indexBackground.png') !important;
+  background-image: url('../img/indexBackground.png') !important;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment:fixed;
@@ -67,4 +67,46 @@ body {
 }
 .modal {
   z-index : 9999 !important;
+}
+
+
+/* Para el contenido de cada post en readPost.php*/
+.contenido-post {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  display: block;
+  opacity: 1;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contenido-post img {
+  max-width: 50%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+}
+
+.contenido-post h2, 
+.contenido-post h3 {
+  margin-top: 1.5rem;
+  color: #333;
+}
+
+.contenido-post p {
+  margin-bottom: 1rem;
+}
+
+.contenido-post ul, .contenido-post ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Botón para descargar el contenido pdf */
+.download-button {
+  position: relative !important; 
+  z-index: 1000 !important; 
+  display: block !important; 
+  margin-top: 30px !important; 
 }

@@ -23,6 +23,7 @@ const TABLE_USERS = 'users';
 const TABLE_ROL = 'rol';
 const TABLE_POST = 'post';
 const TABLE_FILM = 'films';
+const TABLE_INDIVIDUAL_RATE = 'individual_rate';
 
 const TABLAS_OBJETO_DB = [
     'User' => TABLE_USERS,

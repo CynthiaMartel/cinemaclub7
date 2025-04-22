@@ -24,9 +24,9 @@
             </ul>
 
             <!-- Barra de búsqueda -->
-            <form class="d-flex align-items-center">
-                <input class="form-control mb-1 me-2" type="search" placeholder="Buscar..." aria-label="Search"> 
-                <button class="btn btn-outline-success fw-bold" type="submit">Search</button>
+            <form id="searchForm" class="d-flex align-items-center" method="GET" action="/cinemaclub7/films/searchResults.php">
+                <input id="searchInput" class="form-control mb-1 me-2" type="search" name="query" placeholder="Buscar películas..." aria-label="Search">
+                <button class="btn btn-success fw-bold" type="submit">Search</button>
             </form>
 
             <!-- Avatar del perfil del usuario, con cambiar contraseña y logout dentro -->
@@ -63,7 +63,3 @@
 
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-

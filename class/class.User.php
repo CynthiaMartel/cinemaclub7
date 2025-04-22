@@ -14,6 +14,7 @@ class User extends ObjetoDB {
     protected string | null $dateHourLastAccess = "";
     protected int $failedAttempts = 0;
     protected int $blocked = 0;
+    
 
     public function __construct(int $id = 0, string $anotherKey = "", $anotherKeyValue = "") {
         parent::__construct($id, $anotherKey, $anotherKeyValue);

@@ -111,6 +111,27 @@ class Post extends ObjetoDB {
     
         return ($records !== false) ? $records : [];
     }
+
+    // Función estática para obtener los id del Post y usarlo a la hora de visualizar al hacer click al post para leer su contenido
+    public static function getPostById(int $id): ?array {
+        global $actualUser;
+    
+        $gestorDB = new HandlerDB();
+        $where = "id = :id";
+        $params = [':id' => $id];
+    
+        $result = $gestorDB->getRecords(
+            TABLE_POST,
+            ['id', 'idUser', 'title', 'content', 'visible', 'editorName', 'img'],
+            $where,
+            $params,
+            null,
+            'FETCH_ASSOC'
+        );
+    
+        return ($result && count($result) > 0) ? $result[0] : null;
+    }
+    
     
 }
 ?>

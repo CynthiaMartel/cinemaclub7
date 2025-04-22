@@ -17,8 +17,8 @@ global $actualUser;
 <body>
 <?php include_once(__DIR__ . '/menu/menu.php'); ?> 
 <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-    <div class="col-lg-6 col-12 bs-secondary-bg text-light p-4 rounded shadow" style="max-width: 400px;">
-        <h2 class="text-center mb-4">Cambiar Contraseña</h2>
+    <div class="col-lg-6 col-12 bs-secondary-bg tex-dark font-weight-bold p-4 rounded shadow" style="max-width: 400px;">
+        <h2 class="text-center mb-4 text-dark">Cambiar Contraseña</h2>
         <form id="form-change-password">
             <div class="mb-3">
                 <label for="form-actual-password" class="form-label">Contraseña actual</label>

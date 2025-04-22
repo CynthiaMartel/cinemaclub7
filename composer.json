@@ -3,6 +3,9 @@
       "google/apiclient": "2.12",
         "phpmailer/phpmailer": "^6.9",
         "league/oauth2-client": "^2.8",
-        "league/oauth2-google": "^4.0"
+        "league/oauth2-google": "^4.0",
+        "dompdf/dompdf": "^3.1",
+        "tecnickcom/tcpdf": "^6.9",
+        "mpdf/mpdf": "^6.1"
     }
   }
