@@ -71,42 +71,256 @@ body {
 
 
 /* Para el contenido de cada post en readPost.php*/
-.contenido-post {
-  color: white;
-  font-size: 1.1rem;
-  line-height: 1.7;
+.read-post--page {
+  --bg-color: #141414;
+  --text-color: #ECEFF1;
+  --muted-color: #B0BEC5;
+  --accent-color: #157347;
+  --font-family: 'Helvetica Neue', Arial, sans-serif;
+
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+/* Marco oscuro alrededor del contenido con mayor opacidad para facilitar la lectura */
+.read-post__container {
+  width: 90%;                /* Ajusta para ocupar más ancho */
+  max-width: none;           /* Sin límite estricto */
+  position: relative;
+  z-index: 1;
+  margin: 10px auto;         /* Margen reducido */
+  padding: 30px;             /* Espacio interno generoso */
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(11, 11, 11, 0.3);
+  border-radius: 1rem;
+}
+
+/* Tipografía y espaciado del artículo */
+.read-post__article {
+  margin-bottom: 1rem;       /* Menos separación inferior */
+}
+
+.read-post__header {
+  margin-bottom: 0.75rem;
+}
+
+.read-post__title {
+  margin-bottom: 0.5rem;
+}
+
+.read-post__image {
   display: block;
-  opacity: 1;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-
-.contenido-post img {
-  max-width: 50%;
+  margin: 0 auto 1rem;
+  max-width: 100%;
   height: auto;
-  margin: 1rem 0;
+}
+
+.read-post__content p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Botón de descarga */
+.read-post__download-button {
+  display: inline-block;
+  margin: 15px auto 0;
+  background-color: var(--accent-color);
+  color: #000 !important;
+  padding: 10px 20px;
   border-radius: 0.5rem;
+  text-decoration: none;
 }
 
-.contenido-post h2, 
-.contenido-post h3 {
-  margin-top: 1.5rem;
-  color: #333;
+/* Botón de descarga */
+.read-post__download-button {
+  display: inline-block;
+  margin: 20px auto 0;
+  background-color: var(--accent-color);
+  color: #000 !important;
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  text-decoration: none;
 }
 
-.contenido-post p {
+.read-post__header {
   margin-bottom: 1rem;
 }
 
-.contenido-post ul, .contenido-post ol {
-  margin-left: 2rem;
-  margin-bottom: 1rem;
+.read-post__title {
+  margin-bottom: 0.5rem;
 }
 
-/* Botón para descargar el contenido pdf */
-.download-button {
-  position: relative !important; 
-  z-index: 1000 !important; 
-  display: block !important; 
-  margin-top: 30px !important; 
+.read-post__image {
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.read-post__content p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Botón de descarga */
+.read-post__download-button {
+  display: inline-block;
+  margin: 20px auto 0;
+  background-color: var(--accent-color);
+  color: #000 !important;
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+
+
+/* Estilo cards de los post en index
+3 */
+.card {
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+/* Hover: eleva la card y acentúa la sombra */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+
+
+/* ============================= */
+/*  MARCO OSCURO ALREDEDOR DEL CONTENIDO  */
+/* ============================= */
+.film-page .film-container {
+  position: relative !important;
+  z-index: 1 !important;                                 /* Por delante del fondo */
+  margin: 20px auto !important;                         /* Separación del borde de la ventana */
+  padding: 20px !important;                             /* Espacio interno para respirar */
+  background-color: rgba(0, 0, 0, 0.4) !important;      /* Negro clarito, semitransparente */
+  border: 1px solid rgba(11, 11, 11, 0.2) !important; /* Borde suave para contraste */
+  border-radius: 1rem !important;                       /* Esquinas redondeadas */
+}
+/* Film-page */
+body.film-page {
+  --bg-color: #141414;
+  --text-color: #ECEFF1;
+  --muted-color: #B0BEC5;
+  --accent-color: #F2B01E;
+  --font-family: 'Helvetica Neue', Arial, sans-serif;
+
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+/* Contenedor */
+.film-page .film-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.film-page .film-header {
+  position: relative;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+}
+
+.film-page .header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.6),
+    rgba(20, 20, 20, 0.9)
+  );
+}
+
+.film-page .header-content {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  color: var(--text-color);
+}
+
+.film-page .film-title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.film-page .film-year {
+  font-size: 1.1rem;
+  color: var(--muted-color);
+  margin-left: 0.5rem;
+}
+
+/* CONTENIDO */
+.film-page .film-main {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 30px;
+  padding: 40px 30px;
+}
+
+.film-page .film-poster img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.film-page .film-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.film-page .film-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+  line-height: 1.6;
+}
+
+.film-page .film-details li strong {
+  color: var(--text-color);
+}
+
+.film-page .film-overview h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+}
+
+.film-page .film-overview p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.film-page .film-ratings {
+  margin-top: auto;
+}
+
+.film-page .rating-tag {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+
+/* Films rating con estrellas */
+.rateit {
+  display: inline-block !important;
+  visibility: visible !important;
 }

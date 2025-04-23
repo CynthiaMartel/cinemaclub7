@@ -21,13 +21,15 @@ if (!isset($actualUser) || !$actualUser->getidUser()) {
 }
 $idUser = $actualUser->getidUser();
 
-// 2) Recoger y validar POST
-$filmId = filter_input(INPUT_POST,  'film_id', FILTER_VALIDATE_INT);
-$rating = filter_input(INPUT_POST, 'rating',   FILTER_VALIDATE_FLOAT);
-if (!$filmId || !$rating || $rating < 1 || $rating > 5) {
+// 2) Recoger y validar POST (escala de 0 a 10 puntos)
+$filmId = filter_input(INPUT_POST, 'film_id', FILTER_VALIDATE_INT);
+$rating = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
+
+// Ahora permitimos valores entre 0 y 10
+if (!$filmId || $rating === false || $rating < 0 || $rating > 10) {
     echo json_encode([
         'success' => false,
-        'message' => 'ID de película o calificación inválida.'
+        'message' => 'ID de película o calificación inválida. Debe ser entre 0 y 10.'
     ]);
     exit;
 }
@@ -84,8 +86,10 @@ try {
     $gestorDB->dbh->commit();
 
     echo json_encode([
-        'success' => true,
-        'message' => 'Voto registrado correctamente.'
+        'success'        => true,
+        'message'        => 'Voto registrado correctamente.',
+        'individualRate' => $rating,             // voto individual para usuario logueado que ha votado esa película
+        'globalRate'     => round($avg, 1)       // media redondeada a 1 decimal
     ]);
 
 } catch (Exception $e) {

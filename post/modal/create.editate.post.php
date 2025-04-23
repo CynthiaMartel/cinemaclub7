@@ -43,6 +43,16 @@
                             </div>
                         </div>
 
+                        <!-- Campo de subtitulo -->
+                        <div class="mb-3">
+                        <label for="form-create-editate-post-subtitle" class="form-label">Subtitulo</label>
+                        <input type="text"
+                                class="form-control"
+                                id="form-create-editate-post-subtitle"
+                                name="subtitle"
+                                placeholder="Añade subtitulo aquí">
+                        </div>
+
                         <!-- Campo de contenido con CKEditor -->
                         <div class="mb-3">
                             <label for="form-create-editate-post-content">Contenido de noticia</label>

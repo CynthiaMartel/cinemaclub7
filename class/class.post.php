@@ -8,6 +8,7 @@ class Post extends ObjetoDB {
     protected int $id = 0;
     protected int $idUser = 0;  
     protected string $title = "";
+    protected string $subtitle = "";
     protected string $content = "";
     protected int $visible = 0;
     protected string $editorName = "";
@@ -40,6 +41,14 @@ class Post extends ObjetoDB {
 
     public function setTitle(string $title): void {
         $this->title = sanitizarString($title);
+    }
+
+    public function getSubtitle(): string {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(string $subtitle): void {
+        $this->subtitle = sanitizarString($subtitle);
     }
 
     public function getContent(): string {
@@ -88,7 +97,7 @@ class Post extends ObjetoDB {
     }
     
 
-    public static function postList(array $data = ['id', 'title', 'content', 'visible']): array {
+    public static function postList(array $data = ['id', 'title', 'subtitle', 'content', 'visible']): array {
         global $actualUser; // Asegurarse de que se tiene acceso al usuario actual
     
         $gestorDB = new HandlerDB();
@@ -122,7 +131,7 @@ class Post extends ObjetoDB {
     
         $result = $gestorDB->getRecords(
             TABLE_POST,
-            ['id', 'idUser', 'title', 'content', 'visible', 'editorName', 'img'],
+            ['id', 'idUser', 'title', 'subtitle', 'content', 'visible', 'editorName', 'img'],
             $where,
             $params,
             null,

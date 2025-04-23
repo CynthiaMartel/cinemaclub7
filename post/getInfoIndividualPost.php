@@ -11,10 +11,10 @@ if (empty($_POST['id'])) {
 $id = intval($_POST['id']);
 $db = new HandlerDB();
 
-// Aquí, 'editorName' en lugar de 'editor'
+// 
 $post = $db->getRecords(
     TABLE_POST,
-    ['title','editorName','visible','content', 'img'],
+    ['title','subtitle', 'editorName','visible','content', 'img'],
     'id = :id',
     [':id' => $id],
     null,
@@ -33,6 +33,7 @@ if (count($post) === 0) {
 
 echo json_encode([
     'title'   => $post[0]['title'],
+    'subtitle'   => $post[0]['subtitle'],
     'editor'  => $post[0]['editorName'], 
     'visible' => (bool)$post[0]['visible'],
     'content' => $post[0]['content'],

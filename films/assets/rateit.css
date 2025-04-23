@@ -1,0 +1,41 @@
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse; /* ordena los radios 5→1 de izquierda a derecha */
+  justify-content: flex-start;
+  gap: 0.25rem;
+}
+
+.star-rating input {
+  display: none; /* ocultamos los botones de radio */
+}
+
+.star-rating label {
+  cursor: pointer;
+  font-size: 1.5rem;
+  /* el espacio para el pseudo-elemento lo aporta el label */
+}
+
+/* 1) Estrella vacía por defecto */
+.star-rating label::before {
+  font-family: "bootstrap-icons";
+  content: "\f588"; /* bi-star */
+  color: #ccc;
+}
+
+/* 2) Hover: pinta estrellas en amarillo */
+.star-rating label:hover::before,
+.star-rating label:hover ~ label::before {
+  content: "\f586"; /* bi-star-fill */
+  color: #198754;
+}
+
+/* 3) Checked: pinta en rojo hasta la seleccionada */
+.star-rating input:checked ~ label::before {
+  content: "\f586"; /* bi-star-fill */
+  color: #C62C0A;
+}
+
+
+
+
+  

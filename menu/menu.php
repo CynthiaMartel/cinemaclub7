@@ -1,3 +1,10 @@
+<?php
+
+// Aseguramos traer la sesión y el usuario a este ámbito
+global $actualSession, $actualUser;
+?>
+
+
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <!-- Logo (Izquierda) -->
@@ -31,7 +38,7 @@
 
             <!-- Avatar del perfil del usuario, con cambiar contraseña y logout dentro -->
              <!-- Si el usuario sí está logueado, muestra el avatar con su perfil -->
-            <?php if ($actualSession->read('id') != null) { ?>
+            <?php if ( isset($actualUser) && $actualUser->getidUser()) { ?>
                 <ul class="navbar-nav mt-4 mb-2 ms-auto me-4 mb-lg-0"> 
                     <li class="nav-item">
                         <a class="nav-link active fw-bold text-white mt-4" aria-current="page" href=#><?php echo ucwords(strtolower($actualUser->getName())); ?></a>

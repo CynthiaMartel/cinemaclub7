@@ -57,6 +57,7 @@ switch($tarea) {
               : 0;
     
         $title      = sanitizarString(trim($_POST["title"]));
+        $subtitle      = sanitizarString(trim($_POST["subtitle"]));
         $editorName = sanitizarString(trim($_POST["editorName"]));
         // NO sanitizar el HTML de content con htmlspecialchars aquí (ya lo hace CKE editor)
         $content    = trim($_POST["content"]);
@@ -96,6 +97,7 @@ switch($tarea) {
     
         // Asignar resto de campos
         $post->setTitle($title);
+        $post->setSubtitle($subtitle);
         $post->setEditorName($editorName);
         $post->setContent($content);
         $post->setVisible($visible);

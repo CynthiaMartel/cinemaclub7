@@ -28,7 +28,8 @@ const TABLE_INDIVIDUAL_RATE = 'individual_rate';
 const TABLAS_OBJETO_DB = [
     'User' => TABLE_USERS,
     'Post'  => TABLE_POST,
-    'Rol'  => TABLE_ROL 
+    'Rol'  => TABLE_ROL ,
+    'IndividualRate' => TABLE_INDIVIDUAL_RATE
 ];
 
 # Definición de la clase GestorDBPDO

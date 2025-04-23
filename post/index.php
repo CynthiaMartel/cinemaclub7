@@ -18,7 +18,7 @@ $parametrosWhere = [":query" => '%' . $query . '%'];
 // Obtenemos los posts de la base de datos que coinciden con la búsqueda
 $posts = $gestorDB->getRecords(
     TABLE_POST,
-    ['id', 'title', 'content', 'img'], // Incluye los campos necesarios
+    ['id', 'title', 'subtitle', 'content', 'img'], 
     $where,
     $parametrosWhere,
     'title ASC',
@@ -59,8 +59,8 @@ $posts = $gestorDB->getRecords(
                             <div class="row">
                                 <?php foreach ($posts as $post): ?>
                                     <div class="col-md-3">
-                                        <article class="card mb-4">
-                                            <header class="card-header">
+                                        <article class="card mb-4 text-white" style="background-color: #1c1c1c;"> 
+                                            <header class="card-header bg-dark text-white">
                                                 <h4 class="card-title mb-0">
                                                     <?php echo sanitizarString($post['title']); ?>
                                                 </h4>
@@ -71,14 +71,13 @@ $posts = $gestorDB->getRecords(
                                                     src="<?php echo htmlspecialchars(!empty($post['img']) ? $post['img'] : '../img/default_img_post.png'); ?>"
                                                     alt="Imagen del post">
                                             </a>
+
                                             <div class="card-body">
-                                                <p class="card-text">
-                                                    <?php echo html_entity_decode(
-                                                        $post['content'],
-                                                        ENT_QUOTES|ENT_HTML5,
-                                                        'UTF-8'
-                                                    ); ?>
-                                                </p>
+                                            
+                                                <h6 class="card-title mb-0">
+                                                    <?php echo sanitizarString($post['subtitle']); ?>
+                                                </h6>
+                                             
 
                                                 <?php if (isset($actualUser) && $actualUser->isAdminOrEditor()): ?>
                                                     <div class="d-flex justify-content-between gap-2 mt-3">

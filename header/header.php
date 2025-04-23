@@ -1,38 +1,70 @@
 <?php
-require_once(__DIR__.'/../config/config.globales.php');
+require_once(__DIR__ . '/../config/config.globales.php');
 ?>
-
-<!-- Header Común a todas las páginas de la aplicación -->
+<!-- Charset y viewport -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Bootstrap CSS -->
-<link href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstrap/css/bootstrap-icons.min.css">
-
-<!-- Hoja de estilos CSS -->
-<link rel="stylesheet" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/css/styles.css">
-
-<!-- jQuery -->
-<script src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/jquery/jquery.min.js"></script>
-
-<!-- Configuración Global JS -->
-<script src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/config/config.globales.js"></script>
-
-<!-- Configuración de Login JS -->
-<script src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/js/functions.newAccount.js"></script>
-
-<!-- Configuración de Crear nueva cuenta JS -->
-<script src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/js/functions.login.js"></script>
-
-<!-- Configuración de cambiar contraseña JS -->
-<script src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/js/functions.changePassword.js"></script>
-
 <!-- Fuente personalizada -->
-<link rel="stylesheet" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']?>/cabin/cabin.css">
+<link
+  rel="stylesheet"
+  href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/cabin/cabin.css"
+/>
 
-<!-- Estilos personalizados -->
-<link rel="stylesheet" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/css/styles.css">
+<!-- Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstrap/css/bootstrap.min.css"
+/>
+
+<!-- Bootstrap Icons (solo tu versión corregida) -->
+<link
+  rel="stylesheet"
+  href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstraptable/bootstrap-icons.css"
+/>
+
+<!-- Bootstrap Table CSS -->
+<link
+  rel="stylesheet"
+  href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstraptable/bootstrap-table.min.css"
+/>
+
+<!-- Tus estilos personalizados -->
+<link
+  rel="stylesheet"
+  href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/css/styles.css"
+/>
+
+<!-- jQuery (para RateIt y Bootstrap Table) -->
+<script
+  src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/jquery/jquery.min.js"
+></script>
+
+<!-- Bootstrap Bundle (JS + Popper) -->
+<script
+  src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstrap/js/bootstrap.bundle.min.js"
+></script>
+
+<!-- Bootstrap Table JS -->
+<script
+  src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstraptable/bootstrap-table.min.js"
+></script>
+
+<!-- Configuración global y funciones propias -->
+<script
+  src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/config/config.globales.js"
+></script>
+<script
+  src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/js/functions.newAccount.js"
+></script>
+<script
+  src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/js/functions.login.js"
+></script>
+<script
+  src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/js/functions.changePassword.js"
+></script>
+
+
+
+
 
