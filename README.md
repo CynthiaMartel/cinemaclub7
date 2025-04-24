@@ -1,14 +1,19 @@
-![Portada](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/portada_readme.jpg)
-
 # CinemaClub7
 
+![Portada](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/portada_readme.jpg)
+
 ## 📖 Descripción  
+
 **CinemaClub7** es una plataforma web para **buscar**, **puntuar** y **gestionar** películas. Permite a usuarios registrados explorar un catálogo de films de los últimos dos años, valorar cada título y leer posts relacionados con el mundo del cine.
 En el caso de tener el rol de Admin o Editor, también se podrá crear, editar, borrar, y marcar como visible los posts que los usuarios "regulares", podrán leer. El Editor o Admin, tendrá acceso a todos los posts, sean o no visibles.
+
 ---
 
 **A tener en cuenta**  
-  - La base de datos se aloja en la carpeta llamada "Base de datos" con el archivo correspondiente en formato .sql. La contraseña para todos los usuarios que ahí aparece, siempre es: Probando.1.
+  - La base de datos se aloja en la carpeta llamada "database.sql" con el archivo correspondiente en formato .sql. La base de datos se llama cinemaclub7 , por si 
+    quiere implementarla en como base da datos y ver la funcionalidad de el proyecto
+  - La contraseña para todos los usuarios que ahí aparece, siempre es: Probando.1. Si quieres entrar como administrador para ver los cambios entre usuarios regulares, puedes hacer el loguin con : 
+    cynthiamartel@gmail.com
   - Hay una carpeta en img/img_README, para la subida de las imágenes de muestra del fronted incluidas en este archivo README
 
 ![Modal Login](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_login.jpg)
@@ -72,7 +77,9 @@ La aplicación distingue tres roles, almacenados en el campo `idRol` de la tabla
 
 ### ♻️ Modal para actualizar un post existente
 ![Modal actualizar post](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_actualizar_post.jpg)
-  
+
+### 📰 Lectura de noticias
+![Lectura de noticia con botón de descarga PDF](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/lectura_noticia_con_bot%C3%B3n_descarga_pdf.jpg)
 
 4. **Autenticación y gestión de usuarios**
    - Al iniciar sesión:  
@@ -88,7 +95,7 @@ La aplicación distingue tres roles, almacenados en el campo `idRol` de la tabla
 ### 🔑 Modal de login
 ![Modal login](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_login.jpg)
 
-### 📂 
+### 📂 Vista del desplegable (dropdown) del perfil del usuario logueado
 ![Desplegable Mi Perfil](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/desplegable_miperfil.jpg)
 
 ### 🆕 Modal para crear nueva cuenta
