@@ -16,7 +16,7 @@ En el caso de tener el rol de Admin o Editor, también se podrá crear, editar, 
     cynthiamartel@gmail.com
   - Hay una carpeta en img/img_README, para la subida de las imágenes de muestra del fronted incluidas en este archivo README
 
-![Modal Login](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_login.jpg)
+---
 
 ![Vista Logueo](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/vista_logueo.jpg)
 
