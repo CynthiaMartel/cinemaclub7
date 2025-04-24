@@ -1,6 +1,6 @@
-![Portada](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/portada_readme.jpg)
-
 # CinemaClub7
+
+![Portada](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/portada_readme.jpg)
 
 ## 📖 Descripción  
 **CinemaClub7** es una plataforma web para **buscar**, **puntuar** y **gestionar** películas. Permite a usuarios registrados explorar un catálogo de films de los últimos dos años, valorar cada título y leer posts relacionados con el mundo del cine.
