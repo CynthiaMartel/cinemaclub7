@@ -88,7 +88,7 @@ La aplicación distingue tres roles, almacenados en el campo `idRol` de la tabla
 ### 🔑 Modal de login
 ![Modal login](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_login.jpg)
 
-### 📂 
+### 📂 Vista del desplegable (dropdown) del perfil del usuario logueado
 ![Desplegable Mi Perfil](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/desplegable_miperfil.jpg)
 
 ### 🆕 Modal para crear nueva cuenta
