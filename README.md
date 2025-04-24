@@ -90,8 +90,6 @@ La aplicación distingue tres roles, almacenados en el campo `idRol` de la tabla
    - **Email de bienvenida**: al registrarse, se dispara `sendWelcomeEmail.php` (ubicado en la carpeta `libreria/`), que lee credenciales y configuraciones del archivo `.env` para enviar un correo de bienvenida personalizado  
    - Modal de cambio de contraseña con validaciones mínimas
 
-## 🔐 Autenticación de usuarios
-
 ### 🔑 Modal de login
 ![Modal login](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_login.jpg)
 
