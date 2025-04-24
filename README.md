@@ -8,7 +8,9 @@ En el caso de tener el rol de Admin o Editor, también se podrá crear, editar, 
 ---
 
 **A tener en cuenta**  
-  - La base de datos se aloja en la carpeta llamada "Base de datos" con el archivo correspondiente en formato .sql. La contraseña para todos los usuarios que ahí aparece, siempre es: Probando.1.
+  - La base de datos se aloja en la carpeta llamada "Base de datos" con el archivo correspondiente en formato .sql.
+  - La contraseña para todos los usuarios que ahí aparece, siempre es: Probando.1. Si quieres entrar como administrador para ver los cambios entre usuarios regulares, puedes hacer el loguin con : 
+    cynthiamartel@gmail.com
   - Hay una carpeta en img/img_README, para la subida de las imágenes de muestra del fronted incluidas en este archivo README
 
 ![Modal Login](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_login.jpg)
