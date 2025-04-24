@@ -3,8 +3,10 @@
 ![Portada](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/portada_readme.jpg)
 
 ## 📖 Descripción  
+
 **CinemaClub7** es una plataforma web para **buscar**, **puntuar** y **gestionar** películas. Permite a usuarios registrados explorar un catálogo de films de los últimos dos años, valorar cada título y leer posts relacionados con el mundo del cine.
 En el caso de tener el rol de Admin o Editor, también se podrá crear, editar, borrar, y marcar como visible los posts que los usuarios "regulares", podrán leer. El Editor o Admin, tendrá acceso a todos los posts, sean o no visibles.
+
 ---
 
 **A tener en cuenta**  
