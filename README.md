@@ -75,7 +75,9 @@ La aplicación distingue tres roles, almacenados en el campo `idRol` de la tabla
 
 ### ♻️ Modal para actualizar un post existente
 ![Modal actualizar post](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/modal_actualizar_post.jpg)
-  
+
+### 📰 Lectura de noticias
+![Lectura de noticia con botón de descarga PDF](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/lectura_noticia_con_bot%C3%B3n_descarga_pdf.jpg)
 
 4. **Autenticación y gestión de usuarios**
    - Al iniciar sesión:  
