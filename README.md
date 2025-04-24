@@ -108,7 +108,7 @@ La aplicación distingue tres roles, almacenados en el campo `idRol` de la tabla
 ![Cambio de contraseña](https://raw.githubusercontent.com/CynthiaMartel/cinemaclub7/main/img/img_README/vista_cambio_contrase%C3%B1a.jpg)
 
 
-6. **Población de la base de datos**  
+5. **Población de la base de datos**  
    - **TMDB API (API OFICIAL)**: `getFilmsDataBase.php` rellena `films` con títulos de los últimos dos años 
    - **Wikidata**: `getFilmsDataBase.php` via SPARQL como alternativa a datos que no podemos encontrar en la API anterior como son: festivales, nominaciones y premios.
    - Registro de peticiones en `log_wikidata_requests`  
