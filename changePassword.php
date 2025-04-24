@@ -16,9 +16,9 @@ global $actualUser;
 <!--Form de cambio de contraseña-->
 <body>
 <?php include_once(__DIR__ . '/menu/menu.php'); ?> 
-<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
-    <div class="col-lg-6 col-12 bs-secondary-bg tex-dark font-weight-bold p-4 rounded shadow" style="max-width: 400px;">
-        <h2 class="text-center mb-4 text-dark">Cambiar Contraseña</h2>
+<div class="changePassword--page changePassword container-fluid vh-100 d-flex justify-content-center align-items-center">
+    <div class="col-lg-6 col-12 p-4 rounded shadow" style="max-width: 400px; background-color:rgb(38, 37, 37); color: var(--text-color);">
+        <h2 class="text-center mb-4" style="color: var(--text-color);">Cambiar Contraseña</h2>
         <form id="form-change-password">
             <div class="mb-3">
                 <label for="form-actual-password" class="form-label">Contraseña actual</label>
@@ -40,10 +40,11 @@ global $actualUser;
                 <span class="badge" id="general-form-cambiarPassword-feedback"></span>
             </div>
 
-            <button type="submit" id="button-changePassword" class="btn btn-success w-100">Cambiar contraseña</button>
+            <button type="submit" id="button-changePassword" class="btn w-100" style="background-color: var(--accent-color); color: white;">Cambiar contraseña</button>
         </form>
     </div>
 </div>
+
 
 <?php
     $userId = $actualSession->read('id');

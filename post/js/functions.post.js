@@ -10,6 +10,7 @@ function openModalPost(idPost = null) {
     // Limpiar campos por defecto
     $("#form-create-editate-post-id").val('');
     $("#form-create-editate-post-title").val('');
+    $("#form-create-editate-post-subtitle").val('');
     $("#form-create-editate-post-editor").val('');
     $("#form-create-editate-post-visible").prop('checked', false);
     $("#form-create-editate-post-img").val('');
@@ -36,6 +37,7 @@ function openModalPost(idPost = null) {
                 // Asignar los datos al formulario
                 $("#form-create-editate-post-id").val(idPost);
                 $("#form-create-editate-post-title").val(response.title);
+                $("#form-create-editate-post-subtitle").val(response.subtitle);
                 $("#form-create-editate-post-editor").val(response.editor);
                 $("#form-create-editate-post-visible").prop("checked", response.visible);
                 $("#form-create-editate-post-img").val(response.img || '');
@@ -108,7 +110,7 @@ function savePost(event) {
 
         success: function (respuesta) {
             if (respuesta.exito === 1) {
-                $("#form-create-editate-post-title, #form-create-editate-post-editor, #form-create-editate-post-content").removeClass("is-invalid") .addClass("is-valid");
+                $("#form-create-editate-post-title, #form-create-editate-post-subtitle, #form-create-editate-post-editor, #form-create-editate-post-content").removeClass("is-invalid") .addClass("is-valid");
             
                 $("#form-create-editate-post-feedback").addClass("valid-feedback text-success").text(respuesta.mensaje);
             
@@ -254,7 +256,7 @@ function uploadPost(boton) {
             }
 
             if (respuesta.exito === 1) {
-                $("#form-create-editate-post-title, #form-create-editate-post-editor, #form-create-editate-post-content")
+                $("#form-create-editate-post-title, #form-create-editate-post-subtitle, #form-create-editate-post-editor, #form-create-editate-post-content")
                     .removeClass("is-invalid").addClass("is-valid");
 
                 $("#form-create-editate-post-feedback")

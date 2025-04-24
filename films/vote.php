@@ -26,7 +26,7 @@ $filmId = filter_input(INPUT_POST, 'film_id', FILTER_VALIDATE_INT);
 $rating = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
 
 // Ahora permitimos valores entre 0 y 10
-if (!$filmId || $rating === false || $rating < 0 || $rating > 10) {
+if (!$filmId || $rating === false || $rating < 0 || $rating > 5) {
     echo json_encode([
         'success' => false,
         'message' => 'ID de película o calificación inválida. Debe ser entre 0 y 10.'

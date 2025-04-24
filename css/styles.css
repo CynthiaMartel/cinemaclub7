@@ -395,3 +395,17 @@ body.film-page {
 .film-search .a{
   color: #157347
 }
+
+/*Cambio de contraseña*/
+.changePassword--page {
+  --bg-color: #666262;
+  --text-color: #ECEFF1;
+  --muted-color: #B0BEC5;
+  --accent-color: #157347;
+  --font-family: 'Helvetica Neue', Arial, sans-serif;
+
+  margin: 0;
+  color: var(--text-color);
+  font-family: var(--font-family);
+
+}
