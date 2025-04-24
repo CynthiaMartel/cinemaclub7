@@ -1,4 +1,4 @@
-<!-- /PARA FUTURO//--
+<!-- /PARA FUTURO//--  EL QUE USAMOS AHORA ESTÁ EN LIB!!!
 // PROBLEMA: Al tener  configurado el OAuth consent screen en modo testing, expiera sí o sí en 7 días. Tendría que hacerlo en modo producción, pero se me exige un dominio que no tengo
 
 Este archivo se usa en cmd para obtener el código de refresh Token que google manda. 

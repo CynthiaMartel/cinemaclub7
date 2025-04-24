@@ -7,7 +7,9 @@ require_once __DIR__ . '/../config/config.globales.php';
 require_once __DIR__ . '/../db/class.HandlerDB.php';
 require_once __DIR__ . '/../class/function.globales.php';
 require_once __DIR__ . '/../class/class.User.php';
-//require_once __DIR__ . '/../welcome.mail/sendWelcomeEmail.php';
+
+// Cargamos PHPMailer y dotenv desde lib/
+require_once __DIR__ . '/../lib/sendWelcomeEmail.php';
 
 /* @var Usuario $actualUser */
 global $actualUser;
@@ -100,8 +102,12 @@ switch ($tarea) {
         error_log("DB antes de save: ".$handler->error);
         $newUser->save();
 
-        // Enviar email de bienvenida
-        //sendWelcomeEmail($email, $name);
+        //Enviar email de bienvenida
+        $okMail = sendWelcomeEmail($email, $name);
+        if (!$okMail) {
+            error_log("SENDWELCOME: fallo al enviar correo a $email");
+            $respuesta['warningMail'] = 'No se ha podido enviar el email de bienvenida.';
+        }
 
         // Crear sesión
         require_once __DIR__ . '/../class/class.SecureSessionHandler.php'; 

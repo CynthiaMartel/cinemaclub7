@@ -1,19 +1,29 @@
+/* 1) Asegúrate de resetear márgenes y altura */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* 2) Pseudo-elemento fijo al viewport */
 body::after {
-  background-color: #F2E9DD !important;
-  background-image: url('../img/indexBackground.png') !important;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment:fixed;
-  background-position: center;
-  opacity: 0.9;
   content: "";
+  position: fixed;        
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
+  width: 100%;           
+  height: 100%;
+  z-index: -1;
+
+  /* 3) Fondo con opacidad y escala */
+  background-color: rgba(242, 233, 221, 0.9); /* rgba para opacidad 0.9 */
+  background-image: url('../img/indexBackground.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 95%;
+  background-size: 100%;    /* <– cámbialo a cover o a “50% auto” según prefieras */
 }
+
 
 html, body {
   margin: 0;
@@ -176,8 +186,7 @@ body {
 }
 
 
-/* Estilo cards de los post en index
-3 */
+/* Estilo cards de los post en index */
 .card {
   background-color: #1c1c1c;
   border-radius: 12px;
@@ -194,7 +203,7 @@ body {
 }
 
 
-
+/*FILMS*/
 /* ============================= */
 /*  MARCO OSCURO ALREDEDOR DEL CONTENIDO  */
 /* ============================= */
@@ -323,4 +332,66 @@ body.film-page {
 .rateit {
   display: inline-block !important;
   visibility: visible !important;
+}
+.not-log-vote-msn {
+  display: inline-block !important;
+  visibility: visible !important;
+  text-align: center;
+  background: #C62C0A;
+}
+
+
+/** Estilos de SEARCH films//**
+/* styles.css */
+
+.body .film-search{
+  margin: 0;
+  background-color: rgb(41, 41, 41);
+  color: #ECEFF1;
+  font-family: 'Cabin', Arial, sans-serif;
+}
+
+.film-search .film-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.film-search .film-card {
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.film-search .film-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.film-search .film-card img {
+  width: 100%;
+  height: auto;
+}
+
+.film-search .film-details {
+  padding: 15px;
+}
+
+.film-search .film-title {
+  font-size: 1.25rem;
+  margin: 0 0 5px;
+  color: white;
+}
+
+.film-search .film-overview {
+  color: #B0BEC5;
+  font-size: 0.9rem;
+}
+.film-search .a{
+  color: #157347
 }

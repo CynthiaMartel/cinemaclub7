@@ -6,6 +6,7 @@
         "league/oauth2-google": "^4.0",
         "dompdf/dompdf": "^3.1",
         "tecnickcom/tcpdf": "^6.9",
-        "mpdf/mpdf": "^6.1"
+        "mpdf/mpdf": "^6.1",
+        "vlucas/phpdotenv": "^5.6"
     }
   }

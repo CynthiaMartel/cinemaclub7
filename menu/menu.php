@@ -13,13 +13,10 @@
             <!-- Menú de navegación -->
             <ul class="navbar-nav mt-4 me-4 mb-2 ms-4 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active fw-bold text-white" aria-current="page" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/index.php">Inicio</a>
+                    <a class="nav-link active fw-bold text-light" aria-current="page" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/index.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold text-white" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/post/index.php">Noticias</a> <!--onclick="ContentEditorAccess();--->
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bold text-white" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/film/index.php?film_id=69">Peliculas</a> <!--onclick="ContentEditorAccess();--->
+                    <a class="nav-link fw-bold text-light" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/post/index.php">Noticias</a> <!--onclick="ContentEditorAccess();--->
                 </li>
             </ul>
 
@@ -34,16 +31,13 @@
             <?php if ($actualSession->read('id') != null) { ?>
                 <ul class="navbar-nav mt-4 mb-2 ms-auto me-4 mb-lg-0"> 
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold text-white mt-4" aria-current="page" href=#><?php echo ucwords(strtolower($actualUser->getName())); ?></a>
+                        <a class="nav-link active fw-bold text-dark mt-4" aria-current="page" href=#><?php echo ucwords(strtolower($actualUser->getName())); ?></a>
                     </li>
                     <li class="nav-item dropdown mt-2">   
                         <a class="nav-link dropdown-toggle fw-bold text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/img/myAccount-img-default.png" class="rounded-circle shadow-4"
                         style="width: 50px; height: 50px;" alt="Avatar" /></a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item text-dark" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/index">Mi biblioteca</a></li>
-                            <li><a class="dropdown-item text-dark" href="#">Mi info</a></li>
-                            <li><a class="dropdown-item text-dark" href="#">Mi actividad reciente</a></li>
                             <li><a class="dropdown-item text-dark" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/changePassword.php">Cambiar contraseña</a></li>
                             <li><a class="dropdown-item fw-bold text-dark" href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']?>/logout.php">Logout</a></li>
                         </ul>

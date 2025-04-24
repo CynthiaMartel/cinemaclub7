@@ -26,8 +26,8 @@ global $actualUser;
         <?php include_once(__DIR__ ). '/menu/menu.php'; ?> 
 
 
-        <?php if ($actualSession->read('id') != null) { ?><div class="container mt-4">
-            <div class="row justify-content-center">
+        <?php if ($actualSession->read('id') != null) { ?><div class="container mt-2 mb-2">
+            <div class="row justify-content-center mb-auto">
                 <div class="col-12 text-center text-light">
                     <h1>¡Te damos la bienvenida <?php echo ucwords(strtolower($actualUser->getName())); ?>!</h1>
                 </div>
@@ -35,14 +35,15 @@ global $actualUser;
         </div><?php }?>
 
         <!-- Texto sobre la imagen -->
-        <div class="bg-cover d-flex flex-column justify-content-center align-items-center text-center" 
+        <div class="bg-cover d-flex flex-column justify-content-center align-items-center text-center mb-auto mt-2" 
             style="min-height: 100vh; background-size: cover; background-position: center; background-repeat: no-repeat;">
             
-            <h1 class="text-light">Watch. Rate. Debate.</h1>
-            <h3 class="text-light">The film lovers' community starts here</h3>
+            <h1 style="color: #C62C0A; border-radius: 4px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);">Watch. Rate. Debate.</h1>
+            <h3  style="color: #C62C0A; border-radius: 4px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);">The film lovers' community starts here</h3>
             <a href="#" class="btn btn-success mt-3" onclick="openModalNewAccount(); return false;">¡Únete a la comunidad!</a>
         </div>
-
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
      <!-- Footer -->
     <?php include_once(__DIR__.'/header/footer.php'); ?>

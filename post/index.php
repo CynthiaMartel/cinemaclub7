@@ -119,6 +119,8 @@ $posts = $gestorDB->getRecords(
         </div>
     </main>
 
+
+   
     <!-- Post funciones JS -->
     <script src='../post/js/functions.post.js'></script>
 </body>

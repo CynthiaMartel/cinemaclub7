@@ -29,7 +29,7 @@ require_once(__DIR__ . '/../config/config.globales.php');
   href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE_LIB']; ?>/bootstraptable/bootstrap-table.min.css"
 />
 
-<!-- Tus estilos personalizados -->
+<!-- Estilos personalizados CSS -->
 <link
   rel="stylesheet"
   href="<?php echo CONFIG_GENERAL['RUTA_URL_BASE']; ?>/css/styles.css"

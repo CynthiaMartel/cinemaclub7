@@ -7,11 +7,15 @@ require_once __DIR__ . '/../db/class.HandlerDB.php';
 require_once dirname(__DIR__) . '/api/comprobar.sesion.php';
 // (comprobar.sesion.php arranca la sesión y al final hace:
 //    $actualUser = new User( $actualSession->read('id') ); )
-// forzar el scope global si quisieras
+
 global $actualUser;
 
-// Obtener ID de usuario (0 si no está logueado)
-$idUser = $actualUser->getidUser() ?? 0;
+//  inicializar $idUser solo si $actualUser es un objeto válido *****
+$idUser = 0;
+if (isset($actualUser) && is_object($actualUser) && method_exists($actualUser, 'getidUser')) {
+    // si el usuario está logueado, getidUser() devolverá su id, si no, 0 o null
+    $idUser = $actualUser->getidUser() ?? 0;
+}
 
 // 2) Obtener film_id desde GET y validar
 $filmId = filter_input(INPUT_GET, 'film_id', FILTER_VALIDATE_INT);
@@ -112,22 +116,29 @@ if ($idUser) {
         </div>
       </div>
 
-      <!-- Form para votar -->
-      <form id="voteForm" method="POST" action="vote.php" class="vote-form">
-        <label for="rating">Vota la película:</label>
-        <div class="star-rating">
-          <input type="radio" id="star5" name="rating" value="5" <?php echo ($film['individualRate'] == 5 ? 'checked' : ''); ?>><label for="star5" title="5 estrellas"></label>
-          <input type="radio" id="star4" name="rating" value="4" <?php echo ($film['individualRate'] == 4 ? 'checked' : ''); ?>><label for="star4" title="4 estrellas"></label>
-          <input type="radio" id="star3" name="rating" value="3" <?php echo ($film['individualRate'] == 3 ? 'checked' : ''); ?>><label for="star3" title="3 estrellas"></label>
-          <input type="radio" id="star2" name="rating" value="2" <?php echo ($film['individualRate'] == 2 ? 'checked' : ''); ?>><label for="star2" title="2 estrellas"></label>
-          <input type="radio" id="star1" name="rating" value="1" <?php echo ($film['individualRate'] == 1 ? 'checked' : ''); ?>><label for="star1" title="1 estrella"></label>
-        </div>
-        <input type="hidden" name="film_id" value="<?php echo $film['idFilm']; ?>">
-        <button type="submit" class="btn btn-warning mt-2">Votar</button>
-      </form>
-    </section>
-  </div>
+      <!-- Form para votar SOLO si el usuario está logueado -->
+      <?php if ($idUser > 0): ?>
+        <form id="voteForm" method="POST" action="vote.php" class="vote-form">
+          <label for="rating">Vota la película:</label>
+          <div class="star-rating">
+            <?php for ($i = 5; $i >= 1; $i--): ?>
+              <input type="radio"
+                    id="star<?php echo $i; ?>"
+                    name="rating"
+                    value="<?php echo $i; ?>"
+                    <?php echo ($film['individualRate'] == $i ? 'checked' : ''); ?>>
+              <label for="star<?php echo $i; ?>" title="<?php echo $i; ?> estrella<?php echo $i>1?'s':''; ?>"></label>
+            <?php endfor; ?>
+          </div>
+          <input type="hidden" name="film_id" value="<?php echo $film['idFilm']; ?>">
+          <button type="submit" class="btn btn-warning mt-2">Votar</button>
+        </form>
+        <?php else: ?>
+          <p class="not-log-vote-msn">¡ Inicia sesión o crea tu cuenta para votar !</p>
+        <?php endif; ?>
 
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- JS de votación AJAX -->
   <script src="../films/js/functions.vote.js"></script>
 </body>
