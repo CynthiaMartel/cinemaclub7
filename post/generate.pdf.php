@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__DIR__) . '/config/config.globales.php';
 require_once dirname(__DIR__) . '/class/class.post.php';
-require_once dirname(__DIR__) . '/vendor/autoload.php'; 
+require_once dirname(__DIR__) . '/lib/vendor/autoload.php'; 
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

@@ -12,7 +12,7 @@
 
 
 
-function getNewAccessToken($refreshToken) {
+/* function getNewAccessToken($refreshToken) {
     $clientId = '354391895094-j9s20jbqrj4ss539f2uj02t69g5d01v2.apps.googleusercontent.com';
     $clientSecret = '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';
     $url = 'https://oauth2.googleapis.com/token';
@@ -41,5 +41,4 @@ function getNewAccessToken($refreshToken) {
         // Manejo de errores si no se obtiene el token
         return false;
     }
-}
-
+} */

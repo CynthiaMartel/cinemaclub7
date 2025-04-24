@@ -6,7 +6,7 @@ Hay que apuntar a: C:\xampp\htdocs\cinemaclub7\welcome.mail y presionar enter
 Así se obtiene el refresh token que se pegará en el archivo sendWelcomeEmail.php -->
 
 <?php
-require __DIR__ . '/../vendor/autoload.php';   // <-- ruta corregida
+/* require __DIR__ . '/../vendor/autoload.php';   // <-- ruta corregida
 
 use League\OAuth2\Client\Provider\Google;
 
@@ -31,4 +31,4 @@ file_put_contents('.env', "GOOGLE_REFRESH_TOKEN={$accessToken->getRefreshToken()
 
 echo "Refresh Token: ", $accessToken->getRefreshToken(), "\n";
 echo "Access Token:  ", $accessToken->getToken(), "\n";
-echo "Expira en:    ", $accessToken->getExpires(), "\n";
+echo "Expira en:    ", $accessToken->getExpires(), "\n"; */

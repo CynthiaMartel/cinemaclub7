@@ -7,7 +7,7 @@ require_once __DIR__ . '/../config/config.globales.php';
 require_once __DIR__ . '/../db/class.HandlerDB.php';
 require_once __DIR__ . '/../class/function.globales.php';
 require_once __DIR__ . '/../class/class.User.php';
-require_once __DIR__ . '/../welcome.mail/sendWelcomeEmail.php';
+//require_once __DIR__ . '/../welcome.mail/sendWelcomeEmail.php';
 
 /* @var Usuario $actualUser */
 global $actualUser;
@@ -47,19 +47,16 @@ switch ($tarea) {
         }
 
         // Comprobación de duplicados por email
+       
         $handler = new HandlerDB();
+        
         $stmt = $handler->dbh->prepare(
             "SELECT COUNT(*) AS total 
              FROM " . TABLE_USERS . " 
              WHERE email = :email"
         );
-        if (!$stmt) {
-            // fallo en prepare
-            error_log("Error en prepare: " . implode(' | ', $handler->getPdo()->errorInfo()));
-            header('Content-Type: application/json');
-            echo json_encode(['exito'=>0,'mensaje'=>'Error interno al comprobar email']);
-            exit;
-        }
+
+
         $stmt->execute([':email' => $email]);
         $count = (int)$stmt->fetchColumn();
 
@@ -71,8 +68,10 @@ switch ($tarea) {
                 'mensaje'   => 'Ya existe esta cuenta registrada'
             ]);
             exit;
-        }
-        
+        } 
+
+        //--------
+
         // Validación de contraseñas
         if ($pass1 === '') {
             $respuesta = ['exito' => 0, 'mensaje' => 'Debes rellenar el campo contraseña'];
@@ -98,16 +97,17 @@ switch ($tarea) {
         $newUser->setEmail($email);
         $newUser->setPassword($pass1);
         $newUser->setIdRol(3);
+        error_log("DB antes de save: ".$handler->error);
         $newUser->save();
 
         // Enviar email de bienvenida
-        sendWelcomeEmail($email, $name);
+        //sendWelcomeEmail($email, $name);
 
         // Crear sesión
-        require_once __DIR__ . '/../class/class.SecureSessionHandler.php';
+        require_once __DIR__ . '/../class/class.SecureSessionHandler.php'; 
         $sesion = new SecureSessionHandler();
         $sesion->start();
-        $sesion->write('id', $newUser->getIdUser());
+        $sesion->write('id', $newUser->getidUser());
         $sesion->write('ip', getUserIp());
 
         $respuesta = ['exito' => 1, 'mensaje' => '¡Éxito en la creación de la nueva cuenta! ¡Te damos la bienvenida! Cargando...'];
@@ -121,5 +121,3 @@ switch ($tarea) {
 header('Content-Type: application/json');
 echo json_encode($respuesta);
 ?>
-
-

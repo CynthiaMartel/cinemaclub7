@@ -14,7 +14,6 @@ class User extends ObjetoDB {
     protected string | null $dateHourLastAccess = "";
     protected int $failedAttempts = 0;
     protected int $blocked = 0;
-    
 
     public function __construct(int $id = 0, string $anotherKey = "", $anotherKeyValue = "") {
         parent::__construct($id, $anotherKey, $anotherKeyValue);
@@ -59,8 +58,6 @@ class User extends ObjetoDB {
     public function checkPassword(string $unencryptedPassword): bool {
         return password_verify($unencryptedPassword, $this->password);
     }
-
-    //Quité lo de los roles porque tengo una tabla a parte con los roles de Admin, Editor y User(usuarios ordinarios) ***
 
     public function getIpLastAccess(): string {
         return sanitizarString($this->ipLastAccess);

@@ -18,7 +18,7 @@ $parametrosWhere = [":query" => '%' . $query . '%'];
 // Obtenemos los posts de la base de datos que coinciden con la búsqueda
 $posts = $gestorDB->getRecords(
     TABLE_POST,
-    ['id', 'title', 'subtitle', 'content', 'img'], 
+    ['id', 'title', 'subtitle', 'content', 'img', 'visible'], 
     $where,
     $parametrosWhere,
     'title ASC',
@@ -58,6 +58,18 @@ $posts = $gestorDB->getRecords(
                             <!-- Preparamos cuatro columnas vacías -->
                             <div class="row">
                                 <?php foreach ($posts as $post): ?>
+
+                                    <?php
+                                    // ¿Está marcado como visible?
+                                    $esVisible     = intval($post['visible']) === 1;
+                                    // ¿Es Admin u Editor?
+                                    $esAdminEditor = isset($actualUser) && $actualUser->isAdminOrEditor();
+                                    // Si no es visible y no es Admin/Editor, saltamos este post:
+                                    if (! $esVisible && ! $esAdminEditor) {
+                                        continue;
+                                    }
+                                    
+                                    ?>
                                     <div class="col-md-3">
                                         <article class="card mb-4 text-white" style="background-color: #1c1c1c;"> 
                                             <header class="card-header bg-dark text-white">

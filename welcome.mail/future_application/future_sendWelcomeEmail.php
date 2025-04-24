@@ -6,7 +6,7 @@
 //La función sendWelcomeEmail se crea en este archivo para obtener el token y luego se usa para configurar la autenticación SMTP de PHPMailer.
 // Además, se envía un email de confirmación a mi correo "codingdreamroutes.cynthiamartel@gmail.com" para verificar el envío de este correo de bienvenida
 
-use PHPMailer\PHPMailer\PHPMailer;
+/* use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use League\OAuth2\Client\Provider\Google;
 
@@ -78,6 +78,4 @@ function sendWelcomeEmail($toEmail, $toName) {
         error_log("Error al enviar correo: " . $mail->ErrorInfo);
         return false;
     }
-}
-
-
+} */

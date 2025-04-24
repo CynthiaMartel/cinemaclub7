@@ -1,118 +1,38 @@
 
-2025-04-08 13:44:46: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
 
-2025-04-08 14:23:41: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:33:46: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 14:25:10: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:33:56: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 16:46:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:34:01: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 16:46:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:34:02: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 16:46:33: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:34:29: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 16:46:34: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:34:47: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 19:36:29: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:34:48: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 19:36:29: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:34:48: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 19:47:57: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:34:49: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-08 19:47:57: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`users`, CONSTRAINT `fk_rol_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`id`))
-INSERT INTO users (name,password,email,idRol,ipLastAccess,dateHourLastAccess,failedAttempts,blocked) VALUES (:name,:password,:email,:idRol,:ipLastAccess,:dateHourLastAccess,:failedAttempts,:blocked)
+2025-04-24 12:35:09: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-09 18:03:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`post`, CONSTRAINT `fk_user_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`))
-INSERT INTO post (idUser,title,content,visible,editorName) VALUES (:idUser,:title,:content,:visible,:editorName)
+2025-04-24 12:35:30: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 
-2025-04-09 18:03:28: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`cinemaclub7`.`post`, CONSTRAINT `fk_user_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`))
-INSERT INTO post (idUser,title,content,visible,editorName) VALUES (:idUser,:title,:content,:visible,:editorName)
-
-2025-04-21 15:50:19: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 15:50:40: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 15:51:47: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:04:07: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:04:20: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:17:12: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:17:21: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:17:33: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:18:32: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:47:10: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 16:47:36: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'editor' in 'field list'
-SELECT title,editor,visible,content FROM post WHERE id = :id 
-
-2025-04-21 18:55:18: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 18:57:50: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 18:57:52: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 18:57:52: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 18:58:16: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 18:58:48: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 18:58:50: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 19:03:33: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 19:04:23: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-21 19:20:43: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-22 11:25:16: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-22 11:26:34: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'idUser' in 'field list'
-SELECT idUser FROM users WHERE email = :email  LIMIT 1 
-
-2025-04-22 20:19:37: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT * FROM individual_rate WHERE idUser = NULL AND idFilm = '2998'' at line 1
-SELECT * FROM individual_rate WHERE SELECT * FROM individual_rate WHERE idUser = :idUser AND idFilm = :idFilm 
-
-2025-04-22 20:32:51: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT * FROM individual_rate WHERE idUser = NULL AND idFilm = '2998'' at line 1
-SELECT * FROM individual_rate WHERE SELECT * FROM individual_rate WHERE idUser = :idUser AND idFilm = :idFilm 
-
-2025-04-22 20:38:06: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT * FROM individual_rate WHERE idUser = NULL AND idFilm = '2998'' at line 1
-SELECT * FROM individual_rate WHERE SELECT * FROM individual_rate WHERE idUser = :idUser AND idFilm = :idFilm 
+2025-04-24 12:36:05: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'subtitle' in 'field list'
+SELECT id,title,subtitle,content,img FROM post WHERE title LIKE :query  ORDER BY title ASC 
 

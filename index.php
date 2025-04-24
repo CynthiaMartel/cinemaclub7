@@ -36,7 +36,7 @@ global $actualUser;
 
         <!-- Texto sobre la imagen -->
         <div class="bg-cover d-flex flex-column justify-content-center align-items-center text-center" 
-            style="min-height: 100vh; background-image: url('./imagenes/fondo.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            style="min-height: 100vh; background-size: cover; background-position: center; background-repeat: no-repeat;">
             
             <h1 class="text-light">Watch. Rate. Debate.</h1>
             <h3 class="text-light">The film lovers' community starts here</h3>
