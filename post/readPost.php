@@ -2,6 +2,7 @@
 require_once dirname(__DIR__) . '/config/config.globales.php';
 require_once dirname(__DIR__) . '/api/comprobar.sesion.php';
 require_once dirname(__DIR__) . '/class/class.post.php';
+require_once dirname(__DIR__). '/modal.login.php';
 
 $postId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $post = Post::getPostById($postId);
@@ -15,6 +16,7 @@ if (!$post) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<title><?php echo CONFIG_GENERAL['TITULO_WEB']; ?> -Leer Noticia</title>
     <?php require_once dirname(__DIR__) . '/header/header.php'; ?>
     <title><?php echo htmlspecialchars($post['title']); ?></title>
     <!-- Enlazar estilos específicos de lectura de post -->
@@ -50,6 +52,7 @@ if (!$post) {
     
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>
 

@@ -5,8 +5,8 @@ require_once __DIR__ . '/../config/config.globales.php';
 require_once __DIR__ . '/../db/class.HandlerDB.php';
 // 1) Cargar y validar sesión + usuario
 require_once dirname(__DIR__) . '/api/comprobar.sesion.php';
-// (comprobar.sesion.php arranca la sesión y al final hace:
-//    $actualUser = new User( $actualSession->read('id') ); )
+require_once dirname(__DIR__). '/modal.login.php';
+
 
 global $actualUser;
 
@@ -60,6 +60,7 @@ if ($idUser) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<title><?php echo CONFIG_GENERAL['TITULO_WEB']; ?> -Película</title>
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($film['title']); ?></title>
     <?php require_once dirname(__DIR__) . '/header/header.php'; ?>

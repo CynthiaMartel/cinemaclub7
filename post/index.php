@@ -29,6 +29,7 @@ $posts = $gestorDB->getRecords(
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<title><?php echo CONFIG_GENERAL['TITULO_WEB']; ?> -Noticias</title>
     <?php require_once dirname(__DIR__) .'/header/header.php'; ?>
 </head>
 
@@ -123,6 +124,7 @@ $posts = $gestorDB->getRecords(
    
     <!-- Post funciones JS -->
     <script src='../post/js/functions.post.js'></script>
+    
 </body>
 </html>
 

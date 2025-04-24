@@ -7,6 +7,7 @@ require_once dirname(__DIR__) . '/config/config.globales.php';
 require_once dirname(__DIR__) . '/db/class.HandlerDB.php';
 require_once dirname(__DIR__) . '/api/comprobar.sesion.php';
 require_once  dirname(__DIR__). '/class/class.User.php';
+require_once dirname(__DIR__). '/modal.login.php';
 
 $query = $_GET['query'] ?? '';
 $output = [];
@@ -37,6 +38,7 @@ if ($query) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<title><?php echo CONFIG_GENERAL['TITULO_WEB']; ?> -Listado Películas</title>
 <?php require_once dirname(__DIR__) .'/header/header.php'; ?>
 <?php require_once dirname(__DIR__) . '/menu/menu.php'; ?>
 
@@ -73,5 +75,6 @@ if ($query) {
             <p>No se encontraron resultados.</p>
         <?php endif; ?>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
